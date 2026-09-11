@@ -22,52 +22,57 @@ NOME_SERVIDOR = "Bahamas"
 # Poste a imagem em qualquer canal do seu servidor, clica com o botão
 # direito nela -> "Copiar link" -> cole o link abaixo no lugar do placeholder.
 LOGO_URL = "https://cdn.discordapp.com/attachments/1545711644565446697/1547689204580884530/d9fba299-950c-45e6-949f-3e493b530d1c.png?ex=6aa45565&is=6aa303e5&hm=4ee882f5dd30c17b92709ae113ca122b731e18696baa12ead1ef49e520ac58cb&"
+# ⚠️ ESTE LINK É DO SERVIDOR ANTIGO E PROVAVELMENTE VAI EXPIRAR/DEIXAR DE FUNCIONAR.
+# Sobe a imagem no NOVO servidor, copia o novo link e substitui aqui.
 
 # ══════════════════════════════════════════════════════════════
-#   IDs DO SERVIDOR
+#   IDs DO SERVIDOR (NOVO SERVIDOR)
 # ══════════════════════════════════════════════════════════════
 
 # ─── CANAIS ──────────────────────────────────────────────────
-CANAL_LOG_SET_ID          = 1542747512648237098   # 📄 log-set
-CANAL_LOG_CALC_ID         = 1542747630986199040   # 📄 log-config (usado para logs de "Trocar Meta" e reset semanal)
-CANAL_LOG_AUSENCIA_ID     = 1542747676704112701   # 📄 log-ausencia
-CANAL_LOG_ENTRADA_ID      = 1542747726897348681   # 📄 log-entradas (detalhado, só para staff)
-CANAL_BEM_VINDO_ID        = 0                     # 👋 #bem-vindo — ⚠️ DEFINA O ID — canal público onde toda a gente vê a mensagem de boas-vindas
-CANAL_LOG_SAIDA_ID        = 1542747746379890689   # 📄 log-saidas
-CANAL_LOG_ADVERTENCIAS_ID = 1542747823005499533   # 📄 log-advertencias
-CANAL_LOG_BAU_ID          = 1542773442418315385   # 📄 log-bau (ID informado nas alterações)
+CANAL_LOG_SET_ID          = 1546567399581683854   # 📄 log-set
+CANAL_LOG_CALC_ID         = 1546567399581683855   # 📄 log-config (usado para logs de "Trocar Meta" e reset semanal)
+CANAL_LOG_AUSENCIA_ID     = 1546567399581683856   # 📄 log-ausencia
+CANAL_LOG_ENTRADA_ID      = 1546567399581683857   # 📄 log-entradas (detalhado, só para staff)
+CANAL_BEM_VINDO_ID        = 1547999020495016006   # 👋 #bem-vindo — canal público onde toda a gente vê a mensagem de boas-vindas
+CANAL_LOG_SAIDA_ID        = 1546567399581683858   # 📄 log-saidas
+CANAL_LOG_ADVERTENCIAS_ID = 1546567400084996237   # 📄 log-advertencias
+CANAL_LOG_BAU_ID          = 1546567395466936393   # 📄 log-bau
 
-CANAL_ESCALACAO_PAINEL_ID = 1487817526644838525   # ⚔️ escalacao-painel  (botões Participar/Sair/Finalizar)
-CANAL_ESCALACAO_POST_ID   = 1487817526644838526   # ⚔️ escalacao-relatorio (embed / registo de ação)
+CANAL_ESCALACAO_PAINEL_ID = 1548006343703531631   # ⚔️ escalacao-painel  (botões Participar/Sair/Finalizar)
+CANAL_ESCALACAO_POST_ID   = 1548006716183019520   # ⚔️ escalacao-relatorio (embed / registo de ação)
 
-CANAL_ANUNCIO_ADV_ID      = 1487817526434856983   # 📢 canal onde toda advertência aplicada é anunciada
+CANAL_ANUNCIO_ADV_ID      = 1546567394565029917   # 📢 canal onde toda advertência aplicada é anunciada
 
-CANAL_APROV_AUSENCIA_ID   = 1542748181949972521   # 😴 aprovacao-ausencia
-CANAL_APROV_SET_ID        = 1542748126308466809   # 📋 aprovacao-set (staff aprova registo)
+CANAL_APROV_AUSENCIA_ID   = 1546567395466936395   # 😴 aprovacao-ausencia
+CANAL_APROV_SET_ID        = 1546567395466936394   # 📋 aprovacao-set (staff aprova registo)
 
-CANAL_META_ID             = 1487817526804090984   # 📊 canal-meta (onde a Meta Semanal fica fixada)
-CANAL_INFO_META_ID        = 0                     # 📢 #info-meta — ⚠️ DEFINA O ID DESTE CANAL (anúncio de Meta Geral / @here). Se 0, usa CANAL_META_ID como fallback.
+CANAL_META_ID             = 1546567398339911802   # 📊 canal-meta (onde a Meta Semanal fica fixada)
+CANAL_INFO_META_ID        = 1546567398339911802   # 📢 #info-meta (anúncio de Meta Geral / @here). ⚠️ igual ao CANAL_META_ID — confirma se é intencional. Se 0, usa CANAL_META_ID como fallback.
 
-CATEGORIA_FARM_ID         = 1487817526804090983   # 📁 Categoria onde os canais de Candidatura são criados
+CATEGORIA_FARM_ID         = 1546567398339911801   # 📁 Categoria onde os canais de Candidatura são criados
+
+CANAL_LOG_WINLOSE_ID      = 1548004883410714835   # 🗡️ canal onde cada Win/Lose registado será logado
+CANAL_LOG_CONTAGEM_ID     = 1548004914100310036   # ☠️ canal onde cada registo de kills será logado
 
 # ─── CARGOS ──────────────────────────────────────────────────
-CARGO_MEMBRO_ID      = 1487817525646590107   # ✅ Membro (dado ao ser aprovado no SET)
-CARGO_EXTRA_SET_ID   = 1542729058796699728   # 🎖️ Cargo extra, dado junto com Membro ao aprovar o SET
-CARGO_GERENTE_ID     = 1542723276927926413   # 👑 Gerente (aprovação farm / finalizar escalação)
-CARGO_AUTO_SET_ID    = 1542746845942513704   # 🔰 cargo dado automaticamente ao entrar no servidor
-CARGO_AUSENCIA_ID    = 1542746924128669746   # 😴 cargo de Ausência
+CARGO_MEMBRO_ID      = 1546567392627523760   # ✅ Membro (dado ao ser aprovado no SET)
+CARGO_EXTRA_SET_ID   = 1546567392627523758   # 🎖️ Cargo extra, dado junto com Membro ao aprovar o SET
+CARGO_GERENTE_ID     = 1546567392669212689   # 👑 Gerente (aprovação farm / finalizar escalação)
+CARGO_AUTO_SET_ID    = 1546567392459759788   # 🔰 cargo dado automaticamente ao entrar no servidor
+CARGO_AUSENCIA_ID    = 1546567392627523764   # 😴 cargo de Ausência
 
-CARGO_ADV_VERBAL_ID  = 1487817525634011201   # ⚠️ ADV Verbal
-CARGO_ADV_WARN1_ID   = 1487817525634011202   # ⚠️ ADV 1
-CARGO_ADV_WARN2_ID   = 1487817525634011199   # ⚠️ ADV 2
-CARGO_ADV_WARN3_ID   = 1487817525634011198   # ⚠️ ADV 3
-CARGO_EXONERADO_ID   = 1542746484129398864   # 🚫 Exonerado
+CARGO_ADV_VERBAL_ID  = 1546567392627523755   # ⚠️ ADV Verbal
+CARGO_ADV_WARN1_ID   = 1546567392459759795   # ⚠️ ADV 1
+CARGO_ADV_WARN2_ID   = 1546567392459759794   # ⚠️ ADV 2
+CARGO_ADV_WARN3_ID   = 1546567392459759793   # ⚠️ ADV 3
+CARGO_EXONERADO_ID   = 1546567392459759792   # 🚫 Exonerado
 
 # Cargos que podem ver/gerenciar tickets
 CARGOS_STAFF_IDS = [
-    1542723276927926413,   # Gerente
-    1487817525654716537,   # Liderança
-    1487817525646590114,   # Alto Comando
+    1546567392669212689,   # Gerente  ⚠️ mesmo ID que CARGO_GERENTE_ID — confirma se é intencional
+    1546567392669212692,   # Liderança
+    1546567392669212691,   # Alto Comando
 ]
 
 # ══════════════════════════════════════════════════════════════
@@ -842,9 +847,6 @@ async def setup_escalacao(interaction: discord.Interaction):
 # pessoa escolhe o resultado (Vitória/Derrota) em botões — tudo registado
 # manualmente pelo próprio membro, sem depender do sistema de escalação.
 
-CANAL_LOG_WINLOSE_ID = 0   # ⚠️ DEFINA — canal onde cada Win/Lose registado será logado
-
-
 class WinLoseResultView(discord.ui.View):
     def __init__(self, nome_fight: str, org: str):
         super().__init__(timeout=180)
@@ -929,9 +931,6 @@ async def setup_winlose(interaction: discord.Interaction):
 # ══════════════════════════════════════════════════════════════
 # Painel fixo com um botão "Registar Kills". Ao clicar, abre um formulário
 # onde a pessoa escreve a quantidade (1 a 12) e, opcionalmente, o link do clip.
-
-CANAL_LOG_CONTAGEM_ID = 0   # ⚠️ DEFINA — canal onde cada registo de kills será logado
-
 
 class ContagemModal(discord.ui.Modal, title="☠️ Registar Kills"):
     kills     = discord.ui.TextInput(label="Quantidade de Kills (1 a 12)", placeholder="Ex: 5", required=True, max_length=2)
@@ -2257,7 +2256,6 @@ async def on_ready():
     print(f"✅ Bahamas Bot online como {bot.user}")
     bot.add_view(SETView())
     bot.add_view(AprovarRecusarSETView())
-    bot.add_view(CalculadoraView())
     bot.add_view(PainelTicketsView())
     bot.add_view(CandidaturaView(user_id=0))
     bot.add_view(FecharCandidaturaView(user_id=0))
