@@ -17,13 +17,7 @@ TOKEN = os.environ.get("TOKEN")  # ⚠️ Defina a variável de ambiente TOKEN c
 # No terminal: export TOKEN="seu_token_aqui"
 
 NOME_SERVIDOR = "Silver Dollar"
-# ⚠️ COLE AQUI O LINK PÚBLICO DA SUA LOGO (a imagem que enviaste).
-# Como é um arquivo local, o Discord não consegue usá-lo direto.
-# Poste a imagem em qualquer canal do seu servidor, clica com o botão
-# direito nela -> "Copiar link" -> cole o link abaixo no lugar do placeholder.
-LOGO_URL = "https://cdn.discordapp.com/attachments/1545711644565446697/1547689204580884530/d9fba299-950c-45e6-949f-3e493b530d1c.png?ex=6aa45565&is=6aa303e5&hm=4ee882f5dd30c17b92709ae113ca122b731e18696baa12ead1ef49e520ac58cb&"
-# ⚠️ ESTE LINK É DO SERVIDOR ANTIGO E PROVAVELMENTE VAI EXPIRAR/DEIXAR DE FUNCIONAR.
-# Sobe a imagem no NOVO servidor, copia o novo link e substitui aqui.
+LOGO_URL = "https://cdn.discordapp.com/attachments/1546567396121256040/1548000004944298034/silver_dollar.png?ex=6aa576d9&is=6aa42559&hm=cd015e75ddc063b789ac50262131f384614e2293f4363ddbceaf1184917eb58c&"
 
 # ══════════════════════════════════════════════════════════════
 #   IDs DO SERVIDOR (NOVO SERVIDOR)
@@ -48,7 +42,7 @@ CANAL_APROV_AUSENCIA_ID   = 1546567395466936395   # 😴 aprovacao-ausencia
 CANAL_APROV_SET_ID        = 1546567395466936394   # 📋 aprovacao-set (staff aprova registo)
 
 CANAL_META_ID             = 1546567398339911802   # 📊 canal-meta (onde a Meta Semanal fica fixada)
-CANAL_INFO_META_ID        = 1546567398339911802   # 📢 #info-meta (anúncio de Meta Geral / @here). ⚠️ igual ao CANAL_META_ID — confirma se é intencional. Se 0, usa CANAL_META_ID como fallback.
+CANAL_INFO_META_ID        = 1546567398339911802   # 📢 #info-meta (anúncio de Meta Geral / @here) — mesmo canal do CANAL_META_ID, confirmado intencional
 
 CATEGORIA_FARM_ID         = 1546567398339911801   # 📁 Categoria onde os canais de Candidatura são criados
 
@@ -70,7 +64,8 @@ CARGO_EXONERADO_ID   = 1546567392459759792   # 🚫 Exonerado
 
 # Cargos que podem ver/gerenciar tickets
 CARGOS_STAFF_IDS = [
-    1546567392669212689,   # Gerente  ⚠️ mesmo ID que CARGO_GERENTE_ID — confirma se é intencional
+    1546567392669212689,   # Gerente
+    1548007370414624878,   # Novo cargo adicionado
     1546567392669212692,   # Liderança
     1546567392669212691,   # Alto Comando
 ]
@@ -254,6 +249,10 @@ async def on_member_remove(member):
     embed.set_footer(text=f"Silver Dollar • ID: {member.id}")
     await canal.send(embed=embed)
 
+
+# ══════════════════════════════════════════════════════════════
+#   SET / REGISTRO  (sem pendente — vira Membro direto ao aprovar)
+# ══════════════════════════════════════════════════════════════
 
 # ══════════════════════════════════════════════════════════════
 #   SET / REGISTO  (sem pendente — torna-se Membro logo após aprovação)
@@ -843,6 +842,9 @@ async def setup_escalacao(interaction: discord.Interaction):
 # pessoa escolhe o resultado (Vitória/Derrota) em botões — tudo registado
 # manualmente pelo próprio membro, sem depender do sistema de escalação.
 
+CANAL_LOG_WINLOSE_ID = 0   # ⚠️ DEFINA — canal onde cada Win/Lose registado será logado
+
+
 class WinLoseResultView(discord.ui.View):
     def __init__(self, nome_fight: str, org: str):
         super().__init__(timeout=180)
@@ -927,6 +929,9 @@ async def setup_winlose(interaction: discord.Interaction):
 # ══════════════════════════════════════════════════════════════
 # Painel fixo com um botão "Registar Kills". Ao clicar, abre um formulário
 # onde a pessoa escreve a quantidade (1 a 12) e, opcionalmente, o link do clip.
+
+CANAL_LOG_CONTAGEM_ID = 0   # ⚠️ DEFINA — canal onde cada registo de kills será logado
+
 
 class ContagemModal(discord.ui.Modal, title="☠️ Registar Kills"):
     kills     = discord.ui.TextInput(label="Quantidade de Kills (1 a 12)", placeholder="Ex: 5", required=True, max_length=2)
@@ -1298,8 +1303,8 @@ def _parse_meta_itens(texto: str) -> dict:
 
 
 class TrocarMetaModal(discord.ui.Modal, title="🔄 Mudança de Farm"):
-    """Cada item tem seu próprio campo — o utilizador digita SÓ a quantidade,
-    não precisa escrever o nome do item."""
+    """Agora cada item tem seu próprio campo — o utilizador digita SÓ a quantidade,
+    não precisa mais escrever o nome do item."""
     oleo         = discord.ui.TextInput(label="🛢️ Óleo (Barris)",           placeholder="Ex: 40", required=False, max_length=10)
     plastico     = discord.ui.TextInput(label="🧴 Plástico (Unidades)",      placeholder="Ex: 70", required=False, max_length=10)
     garrafas     = discord.ui.TextInput(label="🍾 Garrafas Vazias (Unid.)",  placeholder="Ex: 30", required=False, max_length=10)
@@ -1482,6 +1487,26 @@ class CandidaturaView(discord.ui.View):
             await interaction.response.send_message("❌ Candidato não encontrado.", ephemeral=True)
 
 
+class FecharCandidaturaView(discord.ui.View):
+    def __init__(self, user_id: int = 0):
+        super().__init__(timeout=None)
+        self.user_id = user_id
+
+    @discord.ui.button(label="🔒 Fechar", style=discord.ButtonStyle.danger, custom_id="btn_fechar_farm_groove")
+    async def fechar(self, interaction: discord.Interaction, button: discord.ui.Button):
+        if not tem_staff(interaction.user) and interaction.user.id != self.user_id:
+            await interaction.response.send_message("❌ Sem permissão.", ephemeral=True)
+            return
+        await interaction.response.send_message("🔒 A fechar em 5 segundos...")
+        await asyncio.sleep(5)
+        canal = interaction.channel
+        if isinstance(canal, discord.TextChannel):
+            try:
+                await canal.delete(reason="Candidatura fechada")
+            except Exception:
+                pass
+
+
 class PainelTicketsView(discord.ui.View):
     def __init__(self):
         super().__init__(timeout=None)
@@ -1641,6 +1666,7 @@ class StatusCategoriaView(discord.ui.View):
             view=StatusAcoesMembroView(interaction.guild, self.periodo),
             ephemeral=True
         )
+
 
     @discord.ui.button(label="🏴 Ações (Facção)", style=discord.ButtonStyle.secondary)
     async def acoes_faccao(self, interaction: discord.Interaction, button: discord.ui.Button):
@@ -1997,6 +2023,7 @@ def _parse_itens_bau(texto: str) -> list[tuple[str, int]]:
     """Converte um texto multilinha 'Item: Quantidade' em uma lista [(item, qtd), ...],
     agrupando quantidades quando o mesmo item aparece mais de uma vez."""
     itens: dict[str, int] = {}
+    ordem: list[str] = []
     for linha in texto.splitlines():
         linha = linha.strip()
         if not linha:
@@ -2018,9 +2045,12 @@ def _parse_itens_bau(texto: str) -> list[tuple[str, int]]:
         if not nome:
             continue
         chave = nome.lower()
-        itens[chave] = itens.get(chave, 0) + qtd
-
-    # recupera a grafia original mapeando novamente (usa a primeira linha correspondente)
+        if chave not in itens:
+            ordem.append(chave)
+            itens[chave] = 0
+            # guarda o nome com a grafia original na primeira ocorrência
+        itens[chave] += qtd
+    # recupera a grafia original mapeando novamente (simples: usa a primeira linha correspondente)
     resultado = []
     vistos = set()
     for linha in texto.splitlines():
@@ -2227,8 +2257,10 @@ async def on_ready():
     print(f"✅ Silver Dollar Bot online como {bot.user}")
     bot.add_view(SETView())
     bot.add_view(AprovarRecusarSETView())
+    bot.add_view(CalculadoraView())
     bot.add_view(PainelTicketsView())
     bot.add_view(CandidaturaView(user_id=0))
+    bot.add_view(FecharCandidaturaView(user_id=0))
     bot.add_view(EscalacaoPainelView(msg_id=0))
     bot.add_view(AusenciaSetupView())
     bot.add_view(AprovarRecusarAusenciaView(user_id=0))
@@ -2262,9 +2294,8 @@ async def on_ready():
         # IMPORTANTE: copiamos os comandos para cada guild ANTES de limpar a
         # árvore global, porque copy_global_to() só consegue copiar os
         # comandos que ainda estão registados globalmente em memória. Fazer
-        # isto na ordem inversa (como estava antes) esvaziava a árvore antes
-        # da cópia, e por isso NENHUM comando chegava a ser sincronizado —
-        # era esse o motivo dos comandos não aparecerem no Discord.
+        # isto na ordem inversa esvaziava a árvore antes da cópia, e por isso
+        # nenhum comando chegava a ser sincronizado.
         for guild in bot.guilds:
             try:
                 bot.tree.copy_global_to(guild=guild)
