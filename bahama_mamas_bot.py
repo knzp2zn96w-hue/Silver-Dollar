@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 load_dotenv()  # Lê o arquivo .env (se existir) e carrega as variáveis de ambiente dele
 
 # ╔══════════════════════════════════════════════════════════════╗
-# ║           BOT BAHAMA MAMAS BAR – FiveM Bar System            ║
+# ║           BOT SILVER DOLLAR BAR – FiveM Bar System            ║
 # ╚══════════════════════════════════════════════════════════════╝
 
 TOKEN = os.environ.get("TOKEN")  # ⚠️ Defina a variável de ambiente TOKEN com o token do seu bot
@@ -16,7 +16,7 @@ TOKEN = os.environ.get("TOKEN")  # ⚠️ Defina a variável de ambiente TOKEN c
 # No Replit: aba "Secrets" -> Key: TOKEN, Value: seu_token
 # No terminal: export TOKEN="seu_token_aqui"
 
-NOME_SERVIDOR = "Bahamas"
+NOME_SERVIDOR = "Silver Dollar"
 # ⚠️ COLE AQUI O LINK PÚBLICO DA SUA LOGO (a imagem que enviaste).
 # Como é um arquivo local, o Discord não consegue usá-lo direto.
 # Poste a imagem em qualquer canal do seu servidor, clica com o botão
@@ -76,15 +76,15 @@ CARGOS_STAFF_IDS = [
 ]
 
 # ══════════════════════════════════════════════════════════════
-#   CORES  (rosa neon Bahama Mamas)
+#   CORES  (Silver Dollar)
 # ══════════════════════════════════════════════════════════════
-COR_PADRAO   = 0xba7eff   # roxo principal (Bahamas)
-COR_GROVE    = 0xba7eff   # roxo principal (mantido o nome da variável p/ não quebrar o resto do código)
+COR_PADRAO   = 0x270505   # cor principal (Silver Dollar)
+COR_GROVE    = 0x270505   # cor principal (mantido o nome da variável p/ não quebrar o resto do código)
 COR_APROVADO = 0x57f287
 COR_RECUSADO = 0xed4245
-COR_AUSENCIA = 0xba7eff   # roxo principal
+COR_AUSENCIA = 0x270505   # cor principal
 COR_ADV      = 0xe67e22
-COR_LOG      = 0xba7eff   # roxo principal
+COR_LOG      = 0x270505   # cor principal
 COR_AMARELO  = 0xf0c000
 
 # ══════════════════════════════════════════════════════════════
@@ -93,7 +93,7 @@ COR_AMARELO  = 0xf0c000
 _railway_volume_dir = os.environ.get("RAILWAY_VOLUME_MOUNT_PATH")  # setada automaticamente pelo Railway quando um Volume é anexado ao serviço
 DB_FILE = (
     os.environ.get("DB_FILE_PATH")
-    or (os.path.join(_railway_volume_dir, "bahama_data.json") if _railway_volume_dir else "bahama_data.json")
+    or (os.path.join(_railway_volume_dir, "silverdollar_data.json") if _railway_volume_dir else "silverdollar_data.json")
 )
 # ⚠️ No Railway (e em qualquer hospedagem com disco efêmero), o arquivo acima
 # SÓ sobrevive a um redeploy se estiver dentro de um Volume persistente.
@@ -113,7 +113,7 @@ META_PADRAO = {
 
 
 TEXTO_COMANDOS_PADRAO = (
-    "📋 **Lista de Comandos — Bahamas**\n\n"
+    "📋 **Lista de Comandos — Silver Dollar**\n\n"
     "Em breve mais informações aqui.\n"
     "Use `/config_comandos` (apenas staff) para editar este texto."
 )
@@ -206,12 +206,12 @@ async def on_member_join(member):
     canal_bv = bot.get_channel(CANAL_BEM_VINDO_ID)
     if canal_bv:
         embed_bv = discord.Embed(
-            title="👋 Bem-vindo(a) à Bahamas!",
+            title="👋 Bem-vindo(a) à Silver Dollar!",
             description=f"Seja bem-vindo(a), {member.mention}! Esperamos que aproveites a tua estadia por cá. 💜",
             color=COR_GROVE, timestamp=datetime.now(timezone.utc)
         )
         embed_bv.set_thumbnail(url=member.display_avatar.url)
-        embed_bv.set_footer(text="Bahamas")
+        embed_bv.set_footer(text="Silver Dollar")
         try:
             await canal_bv.send(content=member.mention, embed=embed_bv)
         except Exception as e:
@@ -231,7 +231,7 @@ async def on_member_join(member):
     embed.add_field(name="🪪 ID",           value=f"`{member.id}`",                                  inline=True)
     embed.add_field(name="📅 Conta criada", value=f"<t:{int(member.created_at.timestamp())}:R>",     inline=False)
     embed.set_thumbnail(url=member.display_avatar.url)
-    embed.set_footer(text=f"Bahamas • ID: {member.id}")
+    embed.set_footer(text=f"Silver Dollar • ID: {member.id}")
     await canal.send(embed=embed)
 
 
@@ -251,7 +251,7 @@ async def on_member_remove(member):
     cargos = [r.mention for r in member.roles if r.name != "@everyone"]
     embed.add_field(name="🎖️ Cargos", value=" ".join(cargos) if cargos else "*nenhum*", inline=False)
     embed.set_thumbnail(url=member.display_avatar.url)
-    embed.set_footer(text=f"Bahamas • ID: {member.id}")
+    embed.set_footer(text=f"Silver Dollar • ID: {member.id}")
     await canal.send(embed=embed)
 
 
@@ -429,7 +429,7 @@ class SETView(discord.ui.View):
 @app_commands.checks.has_permissions(administrator=True)
 async def setup_set(interaction: discord.Interaction):
     embed = discord.Embed(
-        title="📋 Registo – Bahamas",
+        title="📋 Registo – Silver Dollar",
         description=(
             "Bem-vindo(a) à família! 💜\n\n"
             "Clica num dos botões abaixo consoante o teu caso:\n\n"
@@ -441,7 +441,7 @@ async def setup_set(interaction: discord.Interaction):
     )
     embed.set_author(name=NOME_SERVIDOR, icon_url=LOGO_URL)
     embed.set_thumbnail(url=LOGO_URL)
-    embed.set_footer(text="Bahamas")
+    embed.set_footer(text="Silver Dollar")
     await interaction.channel.send(embed=embed, view=SETView())
     await interaction.response.send_message("✅ Painel de registo enviado!", ephemeral=True)
 
@@ -699,7 +699,7 @@ async def _criar_escalacao(interaction: discord.Interaction, armamento_key: str,
     embed_post.add_field(name="Nº de membros:",  value=acao["label"],  inline=True)
     embed_post.add_field(name="Status:",         value="Em andamento", inline=False)
     embed_post.add_field(name="Participantes:",  value=valor_inicial,  inline=False)
-    embed_post.set_footer(text=f"Bahamas • Criado por {interaction.user.display_name}")
+    embed_post.set_footer(text=f"Silver Dollar • Criado por {interaction.user.display_name}")
 
     msg_post = await canal_post.send(embed=embed_post)
 
@@ -714,7 +714,7 @@ async def _criar_escalacao(interaction: discord.Interaction, armamento_key: str,
     )
     embed_painel.set_author(name=NOME_SERVIDOR, icon_url=LOGO_URL)
     embed_painel.add_field(name="Participantes:", value=valor_inicial, inline=False)
-    embed_painel.set_footer(text="Bahamas")
+    embed_painel.set_footer(text="Silver Dollar")
 
     msg_painel = await canal_painel.send(content="@everyone", embed=embed_painel,
                                           allowed_mentions=discord.AllowedMentions(everyone=True))
@@ -829,12 +829,12 @@ async def escalacao(interaction: discord.Interaction):
 @app_commands.checks.has_permissions(administrator=True)
 async def setup_escalacao(interaction: discord.Interaction):
     embed = discord.Embed(
-        title="⚔️ Escalações – Bahamas",
+        title="⚔️ Escalações – Silver Dollar",
         description="Quando uma escalação for criada, os botões de **Participar / Sair / Finalizar** aparecerão aqui.\n\nFique de olho! 🩷",
         color=COR_GROVE
     )
     embed.set_author(name=NOME_SERVIDOR, icon_url=LOGO_URL)
-    embed.set_footer(text="Bahamas")
+    embed.set_footer(text="Silver Dollar")
     await interaction.channel.send(embed=embed)
     await interaction.response.send_message("✅ Painel de escalação enviado!", ephemeral=True)
 
@@ -921,7 +921,7 @@ async def setup_winlose(interaction: discord.Interaction):
     )
     embed.set_author(name=NOME_SERVIDOR, icon_url=LOGO_URL)
     embed.set_thumbnail(url=LOGO_URL)
-    embed.set_footer(text="Bahamas")
+    embed.set_footer(text="Silver Dollar")
     await interaction.channel.send(embed=embed, view=WinLosePainelView())
     await interaction.response.send_message("✅ Painel de Win/Lose enviado!", ephemeral=True)
 
@@ -981,7 +981,7 @@ async def setup_contagem(interaction: discord.Interaction):
     )
     embed.set_author(name=NOME_SERVIDOR, icon_url=LOGO_URL)
     embed.set_thumbnail(url=LOGO_URL)
-    embed.set_footer(text="Bahamas")
+    embed.set_footer(text="Silver Dollar")
     await interaction.channel.send(embed=embed, view=ContagemPainelView())
     await interaction.response.send_message("✅ Painel de contagem enviado!", ephemeral=True)
 
@@ -1165,7 +1165,7 @@ class AusenciaSetupView(discord.ui.View):
 @app_commands.checks.has_permissions(administrator=True)
 async def setup_ausencia(interaction: discord.Interaction):
     embed = discord.Embed(
-        title="😴 Ausência – Bahamas",
+        title="😴 Ausência – Silver Dollar",
         description=(
             "Precisa se ausentar?\n\n"
             "Clica no botão abaixo, preencha o formulário e aguarda a aprovação.\n"
@@ -1175,7 +1175,7 @@ async def setup_ausencia(interaction: discord.Interaction):
     )
     embed.set_author(name=NOME_SERVIDOR, icon_url=LOGO_URL)
     embed.set_thumbnail(url=LOGO_URL)
-    embed.set_footer(text="Bahamas")
+    embed.set_footer(text="Silver Dollar")
     await interaction.channel.send(embed=embed, view=AusenciaSetupView())
     await interaction.response.send_message("✅ Painel de ausência enviado!", ephemeral=True)
 
@@ -1236,7 +1236,7 @@ def build_meta_embed(db: dict) -> discord.Embed:
         value="O cumprimento da meta é fundamental para que o estoque não zere e todos tenham material para trabalhar.",
         inline=False
     )
-    embed.set_footer(text="Bahamas • Meta Semanal")
+    embed.set_footer(text="Silver Dollar • Meta Semanal")
     return embed
 
 
@@ -1519,7 +1519,7 @@ class PainelTicketsView(discord.ui.View):
 @app_commands.checks.has_permissions(administrator=True)
 async def setup_tickets(interaction: discord.Interaction):
     embed = discord.Embed(
-        title="📋 Candidatura – Bahamas",
+        title="📋 Candidatura – Silver Dollar",
         description=(
             "Queres juntar-te à organização?\n\n"
             "Clica no botão abaixo para preencheres a tua candidatura.\n"
@@ -1529,7 +1529,7 @@ async def setup_tickets(interaction: discord.Interaction):
     )
     embed.set_author(name=NOME_SERVIDOR, icon_url=LOGO_URL)
     embed.set_thumbnail(url=LOGO_URL)
-    embed.set_footer(text="Bahamas")
+    embed.set_footer(text="Silver Dollar")
     await interaction.channel.send(embed=embed, view=PainelTicketsView())
     await interaction.response.send_message("✅ Painel enviado!", ephemeral=True)
 
@@ -1586,7 +1586,7 @@ def build_acoes_membro_embed(guild: discord.Guild, uid: str, periodo: str = "tot
     embed.add_field(name="🏆 Vitórias",      value=f"**{win}** ({(win/total*100):.0f}%)" if total else "0", inline=True)
     embed.add_field(name="💀 Derrotas",      value=f"**{lose}** ({(lose/total*100):.0f}%)" if total else "0", inline=True)
     embed.add_field(name="📊 Winrate",       value=f"{_barra_progresso(winrate)}  **{winrate:.0f}%**", inline=False)
-    embed.set_footer(text="Bahamas • Estatísticas de Ações (N/A não é contabilizado)")
+    embed.set_footer(text="Silver Dollar • Estatísticas de Ações (N/A não é contabilizado)")
     return embed
 
 
@@ -1617,7 +1617,7 @@ def build_acoes_faccao_embed(periodo: str = "total") -> discord.Embed:
         linhas.append(f"{nome:<{largura}}  {total:>6}  {win:>5}  {lose:>5}  {winrate:>4.0f}%")
 
     embed.description = "```\n" + "\n".join(linhas) + "\n```"
-    embed.set_footer(text="Bahamas • Estatísticas por tipo de ação (N/A não é contabilizado)")
+    embed.set_footer(text="Silver Dollar • Estatísticas por tipo de ação (N/A não é contabilizado)")
     return embed
 
 
@@ -1710,7 +1710,7 @@ class StatusPeriodoView(discord.ui.View):
 @bot.tree.command(name="status", description="Abre o painel de estado (ações).")
 async def status(interaction: discord.Interaction):
     embed = discord.Embed(
-        title="📊 Central de Status – Bahamas",
+        title="📊 Central de Status – Silver Dollar",
         description=(
             "Escolha o período que deseja visualizar:\n\n"
             "**📌 Total** — estatísticas acumuladas desde o início do bot\n"
@@ -1720,7 +1720,7 @@ async def status(interaction: discord.Interaction):
     )
     embed.set_author(name=NOME_SERVIDOR, icon_url=LOGO_URL)
     embed.set_thumbnail(url=LOGO_URL)
-    embed.set_footer(text="Bahamas")
+    embed.set_footer(text="Silver Dollar")
     await interaction.response.send_message(embed=embed, view=StatusPeriodoView(), ephemeral=True)
 
 
@@ -1789,10 +1789,10 @@ class ConfigComandosModal(discord.ui.Modal, title="⚙️ Configurar /comandos")
 async def comandos(interaction: discord.Interaction):
     db    = load_db()
     texto = db.get("config", {}).get("comandos_texto", TEXTO_COMANDOS_PADRAO)
-    embed = discord.Embed(title="📋 Comandos – Bahamas", description=texto, color=COR_GROVE)
+    embed = discord.Embed(title="📋 Comandos – Silver Dollar", description=texto, color=COR_GROVE)
     embed.set_author(name=NOME_SERVIDOR, icon_url=LOGO_URL)
     embed.set_thumbnail(url=LOGO_URL)
-    embed.set_footer(text="Bahamas")
+    embed.set_footer(text="Silver Dollar")
     await interaction.response.send_message(embed=embed, ephemeral=True)
 
 
@@ -1900,7 +1900,7 @@ class AdvertenciaModal(discord.ui.Modal, title="Aplicar Advertência"):
                 embed_anuncio.add_field(name="Nível",        value=cfg["label"],             inline=True)
                 embed_anuncio.add_field(name="Expiração",    value=cfg["expiracao_label"],   inline=True)
                 embed_anuncio.add_field(name="Motivo",       value=self.motivo.value,        inline=False)
-                embed_anuncio.set_footer(text="Bahamas")
+                embed_anuncio.set_footer(text="Silver Dollar")
                 await canal_anuncio_adv.send(embed=embed_anuncio)
             except Exception as e:
                 print(f"[ADV] Erro ao anunciar: {e}")
@@ -2229,7 +2229,7 @@ class ControleBauView(discord.ui.View):
 @app_commands.checks.has_permissions(administrator=True)
 async def setup_bau(interaction: discord.Interaction):
     embed = discord.Embed(
-        title="📦 Controle de Baú – Bahamas",
+        title="📦 Controle de Baú – Silver Dollar",
         description=(
             "Use os botões abaixo para registar movimentações do baú.\n\n"
             "Podes registar **vários itens de uma vez**, um por linha, no formato:\n"
@@ -2242,7 +2242,7 @@ async def setup_bau(interaction: discord.Interaction):
     )
     embed.set_author(name=NOME_SERVIDOR, icon_url=LOGO_URL)
     embed.set_thumbnail(url=LOGO_URL)
-    embed.set_footer(text="Bahamas")
+    embed.set_footer(text="Silver Dollar")
     await interaction.channel.send(embed=embed, view=ControleBauView())
     await interaction.response.send_message("✅ Painel de controle de baú enviado!", ephemeral=True)
 
@@ -2253,7 +2253,7 @@ async def setup_bau(interaction: discord.Interaction):
 
 @bot.event
 async def on_ready():
-    print(f"✅ Bahamas Bot online como {bot.user}")
+    print(f"✅ Silver Dollar Bot online como {bot.user}")
     bot.add_view(SETView())
     bot.add_view(AprovarRecusarSETView())
     bot.add_view(PainelTicketsView())
