@@ -256,10 +256,6 @@ async def on_member_remove(member):
 
 
 # ══════════════════════════════════════════════════════════════
-#   SET / REGISTRO  (sem pendente — vira Membro direto ao aprovar)
-# ══════════════════════════════════════════════════════════════
-
-# ══════════════════════════════════════════════════════════════
 #   SET / REGISTO  (sem pendente — torna-se Membro logo após aprovação)
 #   Duas categorias (tags): Membro e Parceria.
 # ══════════════════════════════════════════════════════════════
@@ -1302,8 +1298,8 @@ def _parse_meta_itens(texto: str) -> dict:
 
 
 class TrocarMetaModal(discord.ui.Modal, title="🔄 Mudança de Farm"):
-    """Agora cada item tem seu próprio campo — o utilizador digita SÓ a quantidade,
-    não precisa mais escrever o nome do item."""
+    """Cada item tem seu próprio campo — o utilizador digita SÓ a quantidade,
+    não precisa escrever o nome do item."""
     oleo         = discord.ui.TextInput(label="🛢️ Óleo (Barris)",           placeholder="Ex: 40", required=False, max_length=10)
     plastico     = discord.ui.TextInput(label="🧴 Plástico (Unidades)",      placeholder="Ex: 70", required=False, max_length=10)
     garrafas     = discord.ui.TextInput(label="🍾 Garrafas Vazias (Unid.)",  placeholder="Ex: 30", required=False, max_length=10)
@@ -1486,26 +1482,6 @@ class CandidaturaView(discord.ui.View):
             await interaction.response.send_message("❌ Candidato não encontrado.", ephemeral=True)
 
 
-class FecharCandidaturaView(discord.ui.View):
-    def __init__(self, user_id: int = 0):
-        super().__init__(timeout=None)
-        self.user_id = user_id
-
-    @discord.ui.button(label="🔒 Fechar", style=discord.ButtonStyle.danger, custom_id="btn_fechar_farm_groove")
-    async def fechar(self, interaction: discord.Interaction, button: discord.ui.Button):
-        if not tem_staff(interaction.user) and interaction.user.id != self.user_id:
-            await interaction.response.send_message("❌ Sem permissão.", ephemeral=True)
-            return
-        await interaction.response.send_message("🔒 A fechar em 5 segundos...")
-        await asyncio.sleep(5)
-        canal = interaction.channel
-        if isinstance(canal, discord.TextChannel):
-            try:
-                await canal.delete(reason="Candidatura fechada")
-            except Exception:
-                pass
-
-
 class PainelTicketsView(discord.ui.View):
     def __init__(self):
         super().__init__(timeout=None)
@@ -1665,7 +1641,6 @@ class StatusCategoriaView(discord.ui.View):
             view=StatusAcoesMembroView(interaction.guild, self.periodo),
             ephemeral=True
         )
-
 
     @discord.ui.button(label="🏴 Ações (Facção)", style=discord.ButtonStyle.secondary)
     async def acoes_faccao(self, interaction: discord.Interaction, button: discord.ui.Button):
@@ -2022,7 +1997,6 @@ def _parse_itens_bau(texto: str) -> list[tuple[str, int]]:
     """Converte um texto multilinha 'Item: Quantidade' em uma lista [(item, qtd), ...],
     agrupando quantidades quando o mesmo item aparece mais de uma vez."""
     itens: dict[str, int] = {}
-    ordem: list[str] = []
     for linha in texto.splitlines():
         linha = linha.strip()
         if not linha:
@@ -2044,12 +2018,9 @@ def _parse_itens_bau(texto: str) -> list[tuple[str, int]]:
         if not nome:
             continue
         chave = nome.lower()
-        if chave not in itens:
-            ordem.append(chave)
-            itens[chave] = 0
-            # guarda o nome com a grafia original na primeira ocorrência
-        itens[chave] += qtd
-    # recupera a grafia original mapeando novamente (simples: usa a primeira linha correspondente)
+        itens[chave] = itens.get(chave, 0) + qtd
+
+    # recupera a grafia original mapeando novamente (usa a primeira linha correspondente)
     resultado = []
     vistos = set()
     for linha in texto.splitlines():
@@ -2258,7 +2229,6 @@ async def on_ready():
     bot.add_view(AprovarRecusarSETView())
     bot.add_view(PainelTicketsView())
     bot.add_view(CandidaturaView(user_id=0))
-    bot.add_view(FecharCandidaturaView(user_id=0))
     bot.add_view(EscalacaoPainelView(msg_id=0))
     bot.add_view(AusenciaSetupView())
     bot.add_view(AprovarRecusarAusenciaView(user_id=0))
@@ -2287,14 +2257,14 @@ async def on_ready():
 
     bot.loop.create_task(verificar_adv_expiradas())
     bot.loop.create_task(verificar_reset_semanal())
-    try:
-        # Limpa qualquer comando GLOBAL registado anteriormente (isso é o que
-        # estava causando comandos duplicados na lista "/"). Sincronizamos os
-        # comandos SÓ por servidor (guild), que é instantâneo e evita duplicidade.
-        bot.tree.clear_commands(guild=None)
-        await bot.tree.sync()
-        print("✅ Comandos globais antigos removidos (evita duplicação).")
 
+    try:
+        # IMPORTANTE: copiamos os comandos para cada guild ANTES de limpar a
+        # árvore global, porque copy_global_to() só consegue copiar os
+        # comandos que ainda estão registados globalmente em memória. Fazer
+        # isto na ordem inversa (como estava antes) esvaziava a árvore antes
+        # da cópia, e por isso NENHUM comando chegava a ser sincronizado —
+        # era esse o motivo dos comandos não aparecerem no Discord.
         for guild in bot.guilds:
             try:
                 bot.tree.copy_global_to(guild=guild)
@@ -2302,6 +2272,13 @@ async def on_ready():
                 print(f"✅ {len(synced_guild)} comando(s) sincronizado(s) instantaneamente em '{guild.name}'.")
             except Exception as e:
                 print(f"❌ Erro ao sincronizar em '{guild.name}': {e}")
+
+        # Só agora limpamos e sincronizamos os comandos GLOBAIS, para evitar
+        # que fiquem duplicados/atrasados na lista global (cada guild já tem
+        # a sua própria cópia instantânea acima).
+        bot.tree.clear_commands(guild=None)
+        await bot.tree.sync()
+        print("✅ Comandos globais antigos removidos (evita duplicação).")
     except Exception as e:
         print(f"❌ Erro: {e}")
 
