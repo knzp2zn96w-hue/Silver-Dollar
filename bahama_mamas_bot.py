@@ -16,12 +16,12 @@ TOKEN = os.environ.get("TOKEN")  # ⚠️ Defina a variável de ambiente TOKEN c
 # No Replit: aba "Secrets" -> Key: TOKEN, Value: seu_token
 # No terminal: export TOKEN="seu_token_aqui"
 
-NOME_SERVIDOR = "Bahama Mamas Bar"
-# ⚠️ COLE AQUI O LINK PÚBLICO DA SUA LOGO (a imagem que você enviou).
+NOME_SERVIDOR = "Bahamas"
+# ⚠️ COLE AQUI O LINK PÚBLICO DA SUA LOGO (a imagem que enviaste).
 # Como é um arquivo local, o Discord não consegue usá-lo direto.
-# Poste a imagem em qualquer canal do seu servidor, clique com o botão
+# Poste a imagem em qualquer canal do seu servidor, clica com o botão
 # direito nela -> "Copiar link" -> cole o link abaixo no lugar do placeholder.
-LOGO_URL = "COLE_AQUI_O_LINK_DA_LOGO_BAHAMA_MAMAS"
+LOGO_URL = "https://cdn.discordapp.com/attachments/1545711644565446697/1547689204580884530/d9fba299-950c-45e6-949f-3e493b530d1c.png?ex=6aa45565&is=6aa303e5&hm=4ee882f5dd30c17b92709ae113ca122b731e18696baa12ead1ef49e520ac58cb&"
 
 # ══════════════════════════════════════════════════════════════
 #   IDs DO SERVIDOR
@@ -29,26 +29,26 @@ LOGO_URL = "COLE_AQUI_O_LINK_DA_LOGO_BAHAMA_MAMAS"
 
 # ─── CANAIS ──────────────────────────────────────────────────
 CANAL_LOG_SET_ID          = 1542747512648237098   # 📄 log-set
-CANAL_LOG_CALC_ID         = 1542747630986199040   # 📄 log-calculadora
+CANAL_LOG_CALC_ID         = 1542747630986199040   # 📄 log-config (usado para logs de "Trocar Meta" e reset semanal)
 CANAL_LOG_AUSENCIA_ID     = 1542747676704112701   # 📄 log-ausencia
-CANAL_LOG_ENTRADA_ID      = 1542747726897348681   # 📄 log-entradas
+CANAL_LOG_ENTRADA_ID      = 1542747726897348681   # 📄 log-entradas (detalhado, só para staff)
+CANAL_BEM_VINDO_ID        = 0                     # 👋 #bem-vindo — ⚠️ DEFINA O ID — canal público onde toda a gente vê a mensagem de boas-vindas
 CANAL_LOG_SAIDA_ID        = 1542747746379890689   # 📄 log-saidas
 CANAL_LOG_ADVERTENCIAS_ID = 1542747823005499533   # 📄 log-advertencias
 CANAL_LOG_BAU_ID          = 1542773442418315385   # 📄 log-bau (ID informado nas alterações)
 
 CANAL_ESCALACAO_PAINEL_ID = 1487817526644838525   # ⚔️ escalacao-painel  (botões Participar/Sair/Finalizar)
-CANAL_ESCALACAO_POST_ID   = 1487817526644838526   # ⚔️ escalacao-relatorio (embed / registro de ação)
+CANAL_ESCALACAO_POST_ID   = 1487817526644838526   # ⚔️ escalacao-relatorio (embed / registo de ação)
 
 CANAL_ANUNCIO_ADV_ID      = 1487817526434856983   # 📢 canal onde toda advertência aplicada é anunciada
 
 CANAL_APROV_AUSENCIA_ID   = 1542748181949972521   # 😴 aprovacao-ausencia
-CANAL_APROV_SET_ID        = 1542748126308466809   # 📋 aprovacao-set (staff aprova registro)
+CANAL_APROV_SET_ID        = 1542748126308466809   # 📋 aprovacao-set (staff aprova registo)
 
 CANAL_META_ID             = 1487817526804090984   # 📊 canal-meta (onde a Meta Semanal fica fixada)
 CANAL_INFO_META_ID        = 0                     # 📢 #info-meta — ⚠️ DEFINA O ID DESTE CANAL (anúncio de Meta Geral / @here). Se 0, usa CANAL_META_ID como fallback.
-CANAL_VENDAS_ID           = 1542789944416665610   # 🛒 canal de vendas (onde a Venda real é anunciada)
 
-CATEGORIA_FARM_ID         = 1487817526804090983   # 📁 Categoria Farm (tickets de farm)
+CATEGORIA_FARM_ID         = 1487817526804090983   # 📁 Categoria onde os canais de Candidatura são criados
 
 # ─── CARGOS ──────────────────────────────────────────────────
 CARGO_MEMBRO_ID      = 1487817525646590107   # ✅ Membro (dado ao ser aprovado no SET)
@@ -73,13 +73,13 @@ CARGOS_STAFF_IDS = [
 # ══════════════════════════════════════════════════════════════
 #   CORES  (rosa neon Bahama Mamas)
 # ══════════════════════════════════════════════════════════════
-COR_PADRAO   = 0xff1493   # rosa neon escuro
-COR_GROVE    = 0xff69b4   # rosa vivo (mantido o nome da variável p/ não quebrar o resto do código)
+COR_PADRAO   = 0xba7eff   # roxo principal (Bahamas)
+COR_GROVE    = 0xba7eff   # roxo principal (mantido o nome da variável p/ não quebrar o resto do código)
 COR_APROVADO = 0x57f287
 COR_RECUSADO = 0xed4245
-COR_AUSENCIA = 0xff69b4   # rosa
+COR_AUSENCIA = 0xba7eff   # roxo principal
 COR_ADV      = 0xe67e22
-COR_LOG      = 0xff69b4
+COR_LOG      = 0xba7eff   # roxo principal
 COR_AMARELO  = 0xf0c000
 
 # ══════════════════════════════════════════════════════════════
@@ -108,7 +108,7 @@ META_PADRAO = {
 
 
 TEXTO_COMANDOS_PADRAO = (
-    "📋 **Lista de Comandos — Bahama Mamas Bar**\n\n"
+    "📋 **Lista de Comandos — Bahamas**\n\n"
     "Em breve mais informações aqui.\n"
     "Use `/config_comandos` (apenas staff) para editar este texto."
 )
@@ -128,7 +128,6 @@ def load_db():
         agora = datetime.now(timezone.utc)
         return {
             "ausencias": {}, "advertencias": {}, "meta": dict(META_PADRAO),
-            "vendas": {}, "vendas_semanal": {},
             "acoes_stats": {"membros": {}, "acoes": {}, "membros_semanal": {}, "acoes_semanal": {}},
             "config": {"comandos_texto": TEXTO_COMANDOS_PADRAO},
             "semana": {"inicio": agora.isoformat(), "proximo_reset": _proxima_segunda(agora).isoformat()},
@@ -139,8 +138,6 @@ def load_db():
     if "ausencias"    not in data: data["ausencias"]    = {}
     if "advertencias" not in data: data["advertencias"] = {}
     if "meta"         not in data: data["meta"]         = dict(META_PADRAO)
-    if "vendas"       not in data: data["vendas"]       = {}
-    if "vendas_semanal" not in data: data["vendas_semanal"] = {}
     if "acoes_stats"  not in data: data["acoes_stats"]  = {"membros": {}, "acoes": {}, "membros_semanal": {}, "acoes_semanal": {}}
     if "membros"          not in data["acoes_stats"]: data["acoes_stats"]["membros"]          = {}
     if "acoes"            not in data["acoes_stats"]: data["acoes_stats"]["acoes"]             = {}
@@ -196,10 +193,26 @@ async def on_member_join(member):
     cargo = member.guild.get_role(CARGO_AUTO_SET_ID)
     if cargo:
         try:
-            await member.add_roles(cargo, reason="Auto cargo ao entrar")
+            await member.add_roles(cargo, reason="Cargo automático ao entrar")
         except Exception as e:
             print(f"[AUTO ROLE] Erro: {e}")
 
+    # Mensagem pública de boas-vindas (visível a todos, simples: só a foto e uma saudação)
+    canal_bv = bot.get_channel(CANAL_BEM_VINDO_ID)
+    if canal_bv:
+        embed_bv = discord.Embed(
+            title="👋 Bem-vindo(a) à Bahamas!",
+            description=f"Seja bem-vindo(a), {member.mention}! Esperamos que aproveites a tua estadia por cá. 💜",
+            color=COR_GROVE, timestamp=datetime.now(timezone.utc)
+        )
+        embed_bv.set_thumbnail(url=member.display_avatar.url)
+        embed_bv.set_footer(text="Bahamas")
+        try:
+            await canal_bv.send(content=member.mention, embed=embed_bv)
+        except Exception as e:
+            print(f"[BOAS-VINDAS] Erro: {e}")
+
+    # Log detalhado (apenas para staff)
     canal = bot.get_channel(CANAL_LOG_ENTRADA_ID)
     if not canal:
         return
@@ -209,11 +222,11 @@ async def on_member_join(member):
         color=COR_GROVE, timestamp=datetime.now(timezone.utc)
     )
     embed.set_author(name=str(member), icon_url=member.display_avatar.url)
-    embed.add_field(name="👤 Usuário",      value=f"{member.mention}\n`{member}`",                   inline=True)
+    embed.add_field(name="👤 Utilizador",   value=f"{member.mention}\n`{member}`",                   inline=True)
     embed.add_field(name="🪪 ID",           value=f"`{member.id}`",                                  inline=True)
     embed.add_field(name="📅 Conta criada", value=f"<t:{int(member.created_at.timestamp())}:R>",     inline=False)
     embed.set_thumbnail(url=member.display_avatar.url)
-    embed.set_footer(text=f"Bahama Mamas Bar • ID: {member.id}")
+    embed.set_footer(text=f"Bahamas • ID: {member.id}")
     await canal.send(embed=embed)
 
 
@@ -228,12 +241,12 @@ async def on_member_remove(member):
         color=COR_RECUSADO, timestamp=datetime.now(timezone.utc)
     )
     embed.set_author(name=str(member), icon_url=member.display_avatar.url)
-    embed.add_field(name="👤 Usuário", value=f"{member.mention}\n`{member}`", inline=True)
+    embed.add_field(name="👤 Utilizador", value=f"{member.mention}\n`{member}`", inline=True)
     embed.add_field(name="🪪 ID",      value=f"`{member.id}`",               inline=True)
     cargos = [r.mention for r in member.roles if r.name != "@everyone"]
     embed.add_field(name="🎖️ Cargos", value=" ".join(cargos) if cargos else "*nenhum*", inline=False)
     embed.set_thumbnail(url=member.display_avatar.url)
-    embed.set_footer(text=f"Bahama Mamas Bar • ID: {member.id}")
+    embed.set_footer(text=f"Bahamas • ID: {member.id}")
     await canal.send(embed=embed)
 
 
@@ -241,62 +254,92 @@ async def on_member_remove(member):
 #   SET / REGISTRO  (sem pendente — vira Membro direto ao aprovar)
 # ══════════════════════════════════════════════════════════════
 
-class SETModal(discord.ui.Modal, title="Registro – Bahama Mamas Bar"):
-    nome       = discord.ui.TextInput(label="Nome na cidade",    placeholder="Ex: Maria Bahama",    required=True, max_length=80)
-    passaporte = discord.ui.TextInput(label="ID / Passaporte",   placeholder="Ex: 12345",            required=True, max_length=20)
-    numero_ig  = discord.ui.TextInput(label="Número In Game",    placeholder="Ex: 555-1234",         required=True, max_length=20)
-    recrutador = discord.ui.TextInput(label="Quem te recrutou?", placeholder="Nome do recrutador",   required=True, max_length=80)
+# ══════════════════════════════════════════════════════════════
+#   SET / REGISTO  (sem pendente — torna-se Membro logo após aprovação)
+#   Duas categorias (tags): Membro e Parceria.
+# ══════════════════════════════════════════════════════════════
+
+class SETModalMembro(discord.ui.Modal, title="Registo – Membro"):
+    nick       = discord.ui.TextInput(label="Nick - In Game",     placeholder="Ex: Maria_Bahama", required=True, max_length=80)
+    recrutador = discord.ui.TextInput(label="Quem te recrutou?",  placeholder="Nome do recrutador", required=True, max_length=80)
 
     async def on_submit(self, interaction: discord.Interaction):
         membro = interaction.user
-        guild  = interaction.guild
         agora  = datetime.now(timezone.utc)
 
-        # Envia para aprovação
         canal_aprov = bot.get_channel(CANAL_APROV_SET_ID)
         if canal_aprov:
-            embed = discord.Embed(title="📋 Solicitação de Registro", color=COR_GROVE, timestamp=agora)
+            embed = discord.Embed(title="📋 Pedido de Registo — Membro", color=COR_GROVE, timestamp=agora)
             embed.set_author(name=NOME_SERVIDOR, icon_url=LOGO_URL)
             embed.set_thumbnail(url=membro.display_avatar.url)
-            embed.add_field(name="Usuário",         value=membro.mention,        inline=True)
-            embed.add_field(name="Nome",            value=self.nome.value,       inline=True)
-            embed.add_field(name="ID",              value=self.passaporte.value, inline=True)
-            embed.add_field(name="Número In Game",  value=self.numero_ig.value,  inline=True)
-            embed.add_field(name="Recrutador",      value=self.recrutador.value, inline=True)
+            embed.add_field(name="Utilizador",     value=membro.mention,        inline=True)
+            embed.add_field(name="Nick - In Game", value=self.nick.value,       inline=True)
+            embed.add_field(name="Recrutador",     value=self.recrutador.value, inline=True)
             embed.set_footer(text=f"ID Discord: {membro.id}")
-            view = AprovarRecusarSETView(
-                user_id=membro.id,
-                nome=self.nome.value,
-                passaporte=self.passaporte.value
-            )
+            view = AprovarRecusarSETView(user_id=membro.id, tipo="membro", nick=self.nick.value, extra=self.recrutador.value)
             await canal_aprov.send(embed=embed, view=view)
 
-        # Log
         canal_log = bot.get_channel(CANAL_LOG_SET_ID)
         if canal_log:
-            log = discord.Embed(title="📋 SET Solicitado", color=COR_GROVE, timestamp=agora)
+            log = discord.Embed(title="📋 SET Solicitado — Membro", color=COR_GROVE, timestamp=agora)
             log.set_author(name=NOME_SERVIDOR, icon_url=LOGO_URL)
             log.set_thumbnail(url=membro.display_avatar.url)
-            log.add_field(name="Usuário",        value=membro.mention,        inline=True)
-            log.add_field(name="Nome",           value=self.nome.value,       inline=True)
-            log.add_field(name="ID",             value=self.passaporte.value, inline=True)
-            log.add_field(name="Número In Game", value=self.numero_ig.value,  inline=True)
+            log.add_field(name="Utilizador",     value=membro.mention,        inline=True)
+            log.add_field(name="Nick - In Game", value=self.nick.value,       inline=True)
             log.add_field(name="Recrutador",     value=self.recrutador.value, inline=True)
             log.set_footer(text=f"ID Discord: {membro.id}")
             await canal_log.send(embed=log)
 
         await interaction.response.send_message(
-            "✅ Registro enviado! Aguarde a aprovação da liderança.",
+            "✅ Registo enviado! Aguarda a aprovação da liderança.",
+            ephemeral=True
+        )
+
+
+class SETModalParceria(discord.ui.Modal, title="Registo – Parceria"):
+    nick = discord.ui.TextInput(label="Nick - In Game", placeholder="Ex: Maria_Bahama", required=True, max_length=80)
+    org  = discord.ui.TextInput(label="Nome da ORG",    placeholder="Ex: Nome da organização", required=True, max_length=80)
+
+    async def on_submit(self, interaction: discord.Interaction):
+        membro = interaction.user
+        agora  = datetime.now(timezone.utc)
+
+        canal_aprov = bot.get_channel(CANAL_APROV_SET_ID)
+        if canal_aprov:
+            embed = discord.Embed(title="🤝 Pedido de Registo — Parceria", color=COR_GROVE, timestamp=agora)
+            embed.set_author(name=NOME_SERVIDOR, icon_url=LOGO_URL)
+            embed.set_thumbnail(url=membro.display_avatar.url)
+            embed.add_field(name="Utilizador",     value=membro.mention,  inline=True)
+            embed.add_field(name="Nick - In Game", value=self.nick.value, inline=True)
+            embed.add_field(name="Organização",    value=self.org.value,  inline=True)
+            embed.set_footer(text=f"ID Discord: {membro.id}")
+            view = AprovarRecusarSETView(user_id=membro.id, tipo="parceria", nick=self.nick.value, extra=self.org.value)
+            await canal_aprov.send(embed=embed, view=view)
+
+        canal_log = bot.get_channel(CANAL_LOG_SET_ID)
+        if canal_log:
+            log = discord.Embed(title="🤝 SET Solicitado — Parceria", color=COR_GROVE, timestamp=agora)
+            log.set_author(name=NOME_SERVIDOR, icon_url=LOGO_URL)
+            log.set_thumbnail(url=membro.display_avatar.url)
+            log.add_field(name="Utilizador",     value=membro.mention,  inline=True)
+            log.add_field(name="Nick - In Game", value=self.nick.value, inline=True)
+            log.add_field(name="Organização",    value=self.org.value,  inline=True)
+            log.set_footer(text=f"ID Discord: {membro.id}")
+            await canal_log.send(embed=log)
+
+        await interaction.response.send_message(
+            "✅ Registo de parceria enviado! Aguarda a aprovação da liderança.",
             ephemeral=True
         )
 
 
 class AprovarRecusarSETView(discord.ui.View):
-    def __init__(self, user_id: int = 0, nome: str = "", passaporte: str = ""):
+    def __init__(self, user_id: int = 0, tipo: str = "membro", nick: str = "", extra: str = ""):
         super().__init__(timeout=None)
-        self.user_id    = user_id
-        self.nome       = nome
-        self.passaporte = passaporte
+        self.user_id = user_id
+        self.tipo    = tipo    # "membro" ou "parceria"
+        self.nick    = nick
+        self.extra   = extra   # recrutador (membro) ou nome da org (parceria)
 
     @discord.ui.button(label="✅ Aprovar", style=discord.ButtonStyle.success, custom_id="btn_apr_set_groove")
     async def aprovar(self, interaction: discord.Interaction, button: discord.ui.Button):
@@ -306,19 +349,20 @@ class AprovarRecusarSETView(discord.ui.View):
         guild  = interaction.guild
         membro = guild.get_member(self.user_id)
         if not membro:
-            await interaction.response.send_message("❌ Usuário não encontrado.", ephemeral=True)
+            await interaction.response.send_message("❌ Utilizador não encontrado.", ephemeral=True)
             return
 
-        # Dar cargo Membro (+ cargo extra) direto (sem pendente)
-        cargo_m     = guild.get_role(CARGO_MEMBRO_ID)
-        cargo_extra = guild.get_role(CARGO_EXTRA_SET_ID)
-        cargos_para_dar = [c for c in (cargo_m, cargo_extra) if c]
-        if cargos_para_dar:
-            await membro.add_roles(*cargos_para_dar, reason=f"SET aprovado por {interaction.user}")
+        if self.tipo == "membro":
+            # Dá o cargo de Membro (+ cargo extra) diretamente, sem estado pendente
+            cargo_m     = guild.get_role(CARGO_MEMBRO_ID)
+            cargo_extra = guild.get_role(CARGO_EXTRA_SET_ID)
+            cargos_para_dar = [c for c in (cargo_m, cargo_extra) if c]
+            if cargos_para_dar:
+                await membro.add_roles(*cargos_para_dar, reason=f"SET (Membro) aprovado por {interaction.user}")
 
-        # Renomear nick: Nome | ID
+        # Renomeia o nick para o Nick - In Game indicado no registo
         try:
-            await membro.edit(nick=f"{self.nome} | {self.passaporte}", reason="SET aprovado")
+            await membro.edit(nick=self.nick, reason="SET aprovado")
         except Exception:
             pass
 
@@ -328,14 +372,21 @@ class AprovarRecusarSETView(discord.ui.View):
         await interaction.response.edit_message(embed=embed, view=None)
 
         try:
-            await membro.send(
-                f"✅ Seu registro em **{NOME_SERVIDOR}** foi **aprovado**!\n"
-                f"Bem-vindo à família, **{self.nome}**! 🩷"
-            )
+            if self.tipo == "membro":
+                await membro.send(
+                    f"✅ O teu registo em **{NOME_SERVIDOR}** foi **aprovado**!\n"
+                    f"Bem-vindo(a) à família, **{self.nick}**! 💜"
+                )
+            else:
+                await membro.send(
+                    f"✅ O teu registo de **parceria** em **{NOME_SERVIDOR}** foi **aprovado**!\n"
+                    f"Obrigado por representares **{self.extra}**! 💜"
+                )
         except Exception:
             pass
 
-        await interaction.followup.send(f"✅ {membro.mention} aprovado como Membro!", ephemeral=True)
+        rotulo = "Membro" if self.tipo == "membro" else "Parceria"
+        await interaction.followup.send(f"✅ {membro.mention} aprovado como **{rotulo}**!", ephemeral=True)
 
     @discord.ui.button(label="❌ Recusar", style=discord.ButtonStyle.danger, custom_id="btn_rec_set_groove")
     async def recusar(self, interaction: discord.Interaction, button: discord.ui.Button):
@@ -350,307 +401,44 @@ class AprovarRecusarSETView(discord.ui.View):
         await interaction.response.edit_message(embed=embed, view=None)
         if membro:
             try:
-                await membro.send(f"❌ Seu registro em **{NOME_SERVIDOR}** foi **recusado**.")
+                await membro.send(f"❌ O teu registo em **{NOME_SERVIDOR}** foi **recusado**.")
             except Exception:
                 pass
-        await interaction.followup.send("❌ Registro recusado.", ephemeral=True)
+        await interaction.followup.send("❌ Registo recusado.", ephemeral=True)
 
 
 class SETView(discord.ui.View):
     def __init__(self):
         super().__init__(timeout=None)
 
-    @discord.ui.button(label="📝 Fazer meu SET", style=discord.ButtonStyle.success, custom_id="btn_set_groove")
-    async def fazer_set(self, interaction: discord.Interaction, button: discord.ui.Button):
-        await interaction.response.send_modal(SETModal())
+    @discord.ui.button(label="👤 Membro", style=discord.ButtonStyle.success, custom_id="btn_set_membro_groove")
+    async def fazer_set_membro(self, interaction: discord.Interaction, button: discord.ui.Button):
+        await interaction.response.send_modal(SETModalMembro())
+
+    @discord.ui.button(label="🤝 Parceria", style=discord.ButtonStyle.primary, custom_id="btn_set_parceria_groove")
+    async def fazer_set_parceria(self, interaction: discord.Interaction, button: discord.ui.Button):
+        await interaction.response.send_modal(SETModalParceria())
 
 
-@bot.tree.command(name="setup_set", description="Envia o painel de SET no canal.")
+@bot.tree.command(name="setup_set", description="Envia o painel de registo (SET) no canal.")
 @app_commands.checks.has_permissions(administrator=True)
 async def setup_set(interaction: discord.Interaction):
     embed = discord.Embed(
-        title="📋 Registro – Bahama Mamas Bar",
+        title="📋 Registo – Bahamas",
         description=(
-            "Bem-vindo à família! 🩷\n\n"
-            "Clique no botão abaixo para registrar seu **SET**.\n"
-            "Após aprovação você receberá automaticamente o cargo de **Membro**."
+            "Bem-vindo(a) à família! 💜\n\n"
+            "Clica num dos botões abaixo consoante o teu caso:\n\n"
+            "**👤 Membro** — se te vais juntar à organização\n"
+            "**🤝 Parceria** — se representas outra organização parceira\n\n"
+            "Após a aprovação, serás notificado(a) por mensagem privada."
         ),
         color=COR_GROVE
     )
     embed.set_author(name=NOME_SERVIDOR, icon_url=LOGO_URL)
     embed.set_thumbnail(url=LOGO_URL)
-    embed.set_footer(text="Bahama Mamas Bar")
+    embed.set_footer(text="Bahamas")
     await interaction.channel.send(embed=embed, view=SETView())
-    await interaction.response.send_message("✅ Painel de SET enviado!", ephemeral=True)
-
-
-# ══════════════════════════════════════════════════════════════
-#   CALCULADORA / VENDA   (sistema antigo restaurado: Lavagem / Venda / Venda [teste])
-# ══════════════════════════════════════════════════════════════
-# Preços por unidade, conforme exista ou não parceria.
-PRECO = {
-    "parceria":     {"ziplock": 500, "baseado": 500},
-    "sem_parceria": {"ziplock": 600, "baseado": 600},
-}
-
-# 30% fica com o vendedor (membro), 70% vai para a facção.
-PERC_VENDEDOR = 0.30
-PERC_FACCAO   = 0.70
-
-
-class LavagemModal(discord.ui.Modal, title="💸 Lavagem de Dinheiro"):
-    quantidade = discord.ui.TextInput(
-        label="Quantidade de dinheiro sujo (R$)",
-        placeholder="Ex: 100000",
-        required=True, max_length=20
-    )
-
-    def __init__(self, tipo: str):
-        super().__init__()
-        self.tipo = tipo  # "parceria" ou "sem_parceria"
-
-    async def on_submit(self, interaction: discord.Interaction):
-        try:
-            valor = float(self.quantidade.value.replace(".", "").replace(",", "."))
-        except ValueError:
-            await interaction.response.send_message("❌ Valor inválido. Use apenas números.", ephemeral=True)
-            return
-
-        if self.tipo == "parceria":
-            perc_deles = 0.25
-            perc_nosso = 0.75
-            tipo_label = "🤝 Com Parceria"
-        else:
-            perc_deles = 0.30
-            perc_nosso = 0.70
-            tipo_label = "🚫 Sem Parceria"
-
-        taxa_deles = valor * perc_deles
-
-        embed = discord.Embed(title="💸 Resultado da Lavagem", color=COR_GROVE, timestamp=datetime.now(timezone.utc))
-        embed.set_author(name=NOME_SERVIDOR, icon_url=LOGO_URL)
-        embed.add_field(name="⚙️ Tipo",       value=tipo_label,                                            inline=False)
-        embed.add_field(name="💰 Valor Sujo",  value=f"R$ {valor:,.0f}".replace(",", "."),                 inline=True)
-        embed.add_field(name="📤 Taxa Deles",   value=f"R$ {taxa_deles:,.0f}".replace(",", ".") + f" ({int(perc_deles*100)}%)", inline=True)
-        embed.add_field(name="💵 Nosso",        value=f"{int(perc_nosso*100)}%",                            inline=True)
-        embed.set_footer(text=f"Lavagem por {interaction.user.display_name}")
-        await interaction.response.send_message(embed=embed, ephemeral=True)
-
-        canal_log = bot.get_channel(CANAL_LOG_CALC_ID)
-        if canal_log:
-            log = discord.Embed(title="💸 Log – Lavagem", color=COR_LOG, timestamp=datetime.now(timezone.utc))
-            log.set_author(name=NOME_SERVIDOR, icon_url=LOGO_URL)
-            log.add_field(name="Usuário",    value=interaction.user.mention,              inline=True)
-            log.add_field(name="Tipo",       value=tipo_label,                            inline=True)
-            log.add_field(name="Valor Sujo", value=f"R$ {valor:,.0f}".replace(",", "."), inline=True)
-            log.add_field(name="Nosso (%)",  value=f"{int(perc_nosso*100)}%",             inline=True)
-            log.set_footer(text=f"ID: {interaction.user.id}")
-            await canal_log.send(embed=log)
-
-
-class LavagemTipoView(discord.ui.View):
-    def __init__(self):
-        super().__init__(timeout=60)
-
-    @discord.ui.button(label="🤝 Com Parceria",  style=discord.ButtonStyle.success,   custom_id="btn_lav_parc_groove")
-    async def com_parceria(self, interaction: discord.Interaction, button: discord.ui.Button):
-        await interaction.response.send_modal(LavagemModal(tipo="parceria"))
-
-    @discord.ui.button(label="🚫 Sem Parceria",  style=discord.ButtonStyle.secondary, custom_id="btn_lav_sem_groove")
-    async def sem_parceria(self, interaction: discord.Interaction, button: discord.ui.Button):
-        await interaction.response.send_modal(LavagemModal(tipo="sem_parceria"))
-
-
-class VendaFormModal(discord.ui.Modal, title="🛒 Registrar Venda"):
-    nome_facao  = discord.ui.TextInput(label="Nome da facção que comprou", placeholder="Ex: GROOVE", required=True, max_length=80)
-    qtd_ziplock = discord.ui.TextInput(label="Qtd. Ziplock c/ Maconha", placeholder="Ex: 100 (ou 0 se não vendeu)", required=True, max_length=10)
-    qtd_baseado = discord.ui.TextInput(label="Qtd. Baseado",            placeholder="Ex: 100 (ou 0 se não vendeu)", required=True, max_length=10)
-
-    def __init__(self, tipo: str, teste: bool = False):
-        super().__init__()
-        self.tipo  = tipo   # "parceria" ou "sem_parceria"
-        self.teste = teste
-
-    async def on_submit(self, interaction: discord.Interaction):
-        try:
-            ziplock = int(self.qtd_ziplock.value.strip())
-            baseado = int(self.qtd_baseado.value.strip())
-        except ValueError:
-            await interaction.response.send_message("❌ Quantidades inválidas. Use apenas números.", ephemeral=True)
-            return
-
-        if ziplock <= 0 and baseado <= 0:
-            await interaction.response.send_message(
-                "⚠️ Nenhuma quantidade informada (ambas 0) — venda não registrada.", ephemeral=True
-            )
-            return
-
-        tipo_label = "🤝 Com Parceria" if self.tipo == "parceria" else "🚫 Sem Parceria"
-        preco_zip = PRECO[self.tipo]["ziplock"]
-        preco_bas = PRECO[self.tipo]["baseado"]
-        total_zip = ziplock * preco_zip
-        total_bas = baseado * preco_bas
-        total     = total_zip + total_bas
-
-        parte_vendedor = total * PERC_VENDEDOR
-        parte_faccao   = total * PERC_FACCAO
-
-        mercadoria_linhas = []
-        if ziplock > 0:
-            mercadoria_linhas.append(f"🍃 Ziplock: {ziplock}x → R$ {total_zip:,.0f}".replace(",", "."))
-        if baseado > 0:
-            mercadoria_linhas.append(f"🚬 Baseado: {baseado}x → R$ {total_bas:,.0f}".replace(",", "."))
-
-        titulo = "🧪 Venda [TESTE]" if self.teste else "🛒 Venda Realizada"
-        embed = discord.Embed(title=titulo, color=COR_GROVE, timestamp=datetime.now(timezone.utc))
-        embed.set_author(name=NOME_SERVIDOR, icon_url=LOGO_URL)
-        embed.add_field(name="⚙️ Tipo",       value=tipo_label,                                  inline=False)
-        embed.add_field(name="🏴 Facção",     value=self.nome_facao.value,                       inline=False)
-        embed.add_field(name="📦 Mercadoria", value="\n".join(mercadoria_linhas),                inline=False)
-        embed.add_field(name="💰 Total",      value=f"**R$ {total:,.0f}**".replace(",", "."),    inline=False)
-        embed.add_field(
-            name="📊 Divisão",
-            value=(
-                f"**Vendedor ({int(PERC_VENDEDOR*100)}%):** R$ {parte_vendedor:,.0f}\n"
-                f"**Facção ({int(PERC_FACCAO*100)}%):** R$ {parte_faccao:,.0f}"
-            ).replace(",", "."),
-            inline=False
-        )
-
-        if self.teste:
-            embed.set_footer(text="Bahama Mamas Bar • Simulação — não anunciada nem registrada")
-            await interaction.response.send_message(embed=embed, ephemeral=True)
-            return
-
-        embed.add_field(name="👤 Vendedor", value=f"Vendido para {interaction.user.mention}", inline=False)
-        embed.set_footer(text=f"Bahama Mamas Bar • {tipo_label}")
-
-        # Registra a venda no banco para alimentar o /status (total + semanal)
-        db  = load_db()
-        uid = str(interaction.user.id)
-        reg = db["vendas"].setdefault(uid, {"ziplock": 0, "baseado": 0, "faturado": 0})
-        reg["ziplock"]  += ziplock
-        reg["baseado"]  += baseado
-        reg["faturado"] += parte_faccao
-        reg_sem = db["vendas_semanal"].setdefault(uid, {"ziplock": 0, "baseado": 0, "faturado": 0})
-        reg_sem["ziplock"]  += ziplock
-        reg_sem["baseado"]  += baseado
-        reg_sem["faturado"] += parte_faccao
-        save_db(db)
-
-        canal_vendas = bot.get_channel(CANAL_VENDAS_ID)
-        if canal_vendas:
-            await canal_vendas.send(embed=embed)
-            await interaction.response.send_message(f"✅ Venda anunciada em {canal_vendas.mention}!", ephemeral=True)
-        else:
-            await interaction.response.send_message("❌ Canal de vendas não encontrado.", ephemeral=True)
-
-        canal_log = bot.get_channel(CANAL_LOG_CALC_ID)
-        if canal_log:
-            log = discord.Embed(title="🛒 Log – Venda", color=COR_LOG, timestamp=datetime.now(timezone.utc))
-            log.set_author(name=NOME_SERVIDOR, icon_url=LOGO_URL)
-            log.add_field(name="Vendedor",  value=interaction.user.mention,  inline=True)
-            log.add_field(name="Facção",    value=self.nome_facao.value,     inline=True)
-            log.add_field(name="Tipo",      value=tipo_label,                inline=True)
-            log.add_field(name="Ziplock",   value=str(ziplock),              inline=True)
-            log.add_field(name="Baseado",   value=str(baseado),              inline=True)
-            log.add_field(name="Total",     value=f"R$ {total:,.0f}".replace(",", "."), inline=True)
-            log.add_field(
-                name="Divisão",
-                value=f"Vendedor: R$ {parte_vendedor:,.0f} | Facção: R$ {parte_faccao:,.0f}".replace(",", "."),
-                inline=False
-            )
-            log.set_footer(text=f"ID: {interaction.user.id}")
-            await canal_log.send(embed=log)
-
-
-class VendaTipoView(discord.ui.View):
-    """Escolha Com Parceria / Sem Parceria antes de abrir o formulário de venda.
-    Usado tanto pela Venda real quanto pela Venda [teste]."""
-    def __init__(self, teste: bool = False):
-        super().__init__(timeout=60)
-        self.teste = teste
-
-    @discord.ui.button(label="🤝 Com Parceria",  style=discord.ButtonStyle.success,   custom_id="btn_venda_parc_groove")
-    async def com_parceria(self, interaction: discord.Interaction, button: discord.ui.Button):
-        await interaction.response.send_modal(VendaFormModal(tipo="parceria", teste=self.teste))
-
-    @discord.ui.button(label="🚫 Sem Parceria",  style=discord.ButtonStyle.secondary, custom_id="btn_venda_sem_groove")
-    async def sem_parceria(self, interaction: discord.Interaction, button: discord.ui.Button):
-        await interaction.response.send_modal(VendaFormModal(tipo="sem_parceria", teste=self.teste))
-
-
-class CalculadoraView(discord.ui.View):
-    def __init__(self):
-        super().__init__(timeout=None)
-
-    @discord.ui.button(label="💸 Lavagem", style=discord.ButtonStyle.primary,  custom_id="btn_calc_lav_groove")
-    async def lavagem(self, interaction: discord.Interaction, button: discord.ui.Button):
-        embed = discord.Embed(
-            title="💸 Lavagem de Dinheiro",
-            description=(
-                "Selecione o tipo:\n\n"
-                "🤝 **Com Parceria** → 75% nosso\n"
-                "🚫 **Sem Parceria** → 70% nosso"
-            ),
-            color=COR_GROVE
-        )
-        await interaction.response.send_message(embed=embed, view=LavagemTipoView(), ephemeral=True)
-
-    @discord.ui.button(label="🛒 Venda", style=discord.ButtonStyle.success, custom_id="btn_calc_venda_real_groove")
-    async def venda(self, interaction: discord.Interaction, button: discord.ui.Button):
-        embed = discord.Embed(
-            title="🛒 Venda",
-            description=(
-                "Selecione o tipo de venda para calcular e anunciar automaticamente:\n\n"
-                "**🤝 Com Parceria:**\n"
-                f"› 🍃 Ziplock c/ Maconha — R$ {PRECO['parceria']['ziplock']}/un.\n"
-                f"› 🚬 Baseado — R$ {PRECO['parceria']['baseado']}/un.\n\n"
-                "**🚫 Sem Parceria:**\n"
-                f"› 🍃 Ziplock c/ Maconha — R$ {PRECO['sem_parceria']['ziplock']}/un.\n"
-                f"› 🚬 Baseado — R$ {PRECO['sem_parceria']['baseado']}/un.\n\n"
-                f"**{int(PERC_VENDEDOR*100)}%** fica com o vendedor · **{int(PERC_FACCAO*100)}%** vai para a facção."
-            ),
-            color=COR_GROVE
-        )
-        await interaction.response.send_message(embed=embed, view=VendaTipoView(teste=False), ephemeral=True)
-
-    @discord.ui.button(label="🧪 Venda [teste]", style=discord.ButtonStyle.secondary, custom_id="btn_calc_venda_teste_groove")
-    async def venda_teste(self, interaction: discord.Interaction, button: discord.ui.Button):
-        embed = discord.Embed(
-            title="🧪 Venda [Teste]",
-            description=(
-                "Simulação de cálculo de venda — **não é anunciada nem registrada** no log.\n\n"
-                "Selecione o tipo:\n\n"
-                "**🤝 Com Parceria:**\n"
-                f"› R$ {PRECO['parceria']['ziplock']}/un. (Ziplock e Baseado)\n\n"
-                "**🚫 Sem Parceria:**\n"
-                f"› R$ {PRECO['sem_parceria']['ziplock']}/un. (Ziplock e Baseado)\n\n"
-                f"**{int(PERC_VENDEDOR*100)}%** vendedor · **{int(PERC_FACCAO*100)}%** facção."
-            ),
-            color=COR_GROVE
-        )
-        await interaction.response.send_message(embed=embed, view=VendaTipoView(teste=True), ephemeral=True)
-
-
-@bot.tree.command(name="setup_calculadora", description="Envia o painel da calculadora no canal.")
-@app_commands.checks.has_permissions(administrator=True)
-async def setup_calculadora(interaction: discord.Interaction):
-    embed = discord.Embed(
-        title="🧮 Calculadora – Bahama Mamas Bar",
-        description=(
-            "Use os botões abaixo para calcular:\n\n"
-            "**💸 Lavagem** – Com ou sem parceria\n"
-            "**🛒 Venda** – Ziplock c/ Maconha e Baseado\n"
-            "**🧪 Venda [teste]** – Simula sem anunciar"
-        ),
-        color=COR_GROVE
-    )
-    embed.set_author(name=NOME_SERVIDOR, icon_url=LOGO_URL)
-    embed.set_thumbnail(url=LOGO_URL)
-    embed.set_footer(text="Bahama Mamas Bar")
-    await interaction.channel.send(embed=embed, view=CalculadoraView())
-    await interaction.response.send_message("✅ Calculadora enviada!", ephemeral=True)
+    await interaction.response.send_message("✅ Painel de registo enviado!", ephemeral=True)
 
 
 # ══════════════════════════════════════════════════════════════
@@ -721,7 +509,7 @@ class ResultadoSelect(discord.ui.Select):
             discord.SelectOption(label="💀 Derrota", value="derrota", emoji="💀"),
             discord.SelectOption(label="🚫 N/A (não foi possível)", value="na", emoji="🚫"),
         ]
-        super().__init__(placeholder="Selecione o resultado...", options=options, custom_id="select_resultado_groove")
+        super().__init__(placeholder="Seleciona o resultado...", options=options, custom_id="select_resultado_groove")
 
     async def callback(self, interaction: discord.Interaction):
         resultado = self.values[0]
@@ -751,7 +539,7 @@ class ResultadoSelect(discord.ui.Select):
             try:
                 msg   = await canal_post.fetch_message(dados["post_msg_id"])
                 embed = msg.embeds[0]
-                embed.title = f"📋 Registro de Ação — {dados.get('acao_nome', '')}"
+                embed.title = f"📋 Registo de Ação — {dados.get('acao_nome', '')}"
                 if resultado == "vitoria":
                     embed.color   = COR_APROVADO
                     resultado_txt = "🏆 VITÓRIA"
@@ -769,9 +557,9 @@ class ResultadoSelect(discord.ui.Select):
                 embed.add_field(name="Resultado:", value=resultado_txt, inline=False)
                 await msg.edit(embed=embed, view=None)
             except Exception as e:
-                print(f"[ESCALACAO] Erro ao atualizar registro: {e}")
+                print(f"[ESCALACAO] Erro ao atualizar registo: {e}")
 
-        # Apaga a mensagem do painel (participar/sair) — só o Registro (com o
+        # Apaga a mensagem do painel (participar/sair) — só o Registo (com o
         # resultado) deve permanecer visível depois de finalizada.
         canal_painel = bot.get_channel(dados.get("canal_id_painel", CANAL_ESCALACAO_PAINEL_ID))
         if canal_painel:
@@ -811,14 +599,14 @@ class EscalacaoPainelView(discord.ui.View):
             return
         uid = str(interaction.user.id)
         if uid in dados["participantes"]:
-            await interaction.response.send_message("⚠️ Você já está na lista.", ephemeral=True)
+            await interaction.response.send_message("⚠️ Já estás na lista.", ephemeral=True)
             return
         if len(dados["participantes"]) >= dados["max"]:
             await interaction.response.send_message("🚫 **Escalação cheia. Tente em uma próxima ação.**", ephemeral=True)
             return
         dados["participantes"].append(uid)
         await self._atualizar_embeds(interaction, dados)
-        await interaction.response.send_message("✅ Você entrou na escalação!", ephemeral=True)
+        await interaction.response.send_message("✅ Entraste na escalação!", ephemeral=True)
 
     @discord.ui.button(label="🚪 Sair",       style=discord.ButtonStyle.danger,     custom_id="btn_esc_sair_groove")
     async def sair(self, interaction: discord.Interaction, button: discord.ui.Button):
@@ -828,11 +616,11 @@ class EscalacaoPainelView(discord.ui.View):
             return
         uid = str(interaction.user.id)
         if uid not in dados["participantes"]:
-            await interaction.response.send_message("⚠️ Você não está na lista.", ephemeral=True)
+            await interaction.response.send_message("⚠️ Não estás na lista.", ephemeral=True)
             return
         dados["participantes"].remove(uid)
         await self._atualizar_embeds(interaction, dados)
-        await interaction.response.send_message("✅ Você saiu da escalação.", ephemeral=True)
+        await interaction.response.send_message("✅ Saíste da escalação.", ephemeral=True)
 
     @discord.ui.button(label="🏁 Finalizar",  style=discord.ButtonStyle.secondary,  custom_id="btn_esc_fin_groove")
     async def finalizar(self, interaction: discord.Interaction, button: discord.ui.Button):
@@ -840,7 +628,7 @@ class EscalacaoPainelView(discord.ui.View):
             await interaction.response.send_message("❌ Apenas gerentes podem finalizar.", ephemeral=True)
             return
         view = FinalizarEscalacaoView(painel_msg_id=self.msg_id)
-        await interaction.response.send_message("Selecione o resultado:", view=view, ephemeral=True)
+        await interaction.response.send_message("Seleciona o resultado:", view=view, ephemeral=True)
 
     async def _atualizar_embeds(self, interaction: discord.Interaction, dados: dict):
         guild = interaction.guild
@@ -860,7 +648,7 @@ class EscalacaoPainelView(discord.ui.View):
             except Exception:
                 pass
 
-        # Registro/relatório
+        # Registo/relatório
         canal_post = bot.get_channel(dados["canal_id"])
         if canal_post:
             try:
@@ -895,7 +683,7 @@ async def _criar_escalacao(interaction: discord.Interaction, armamento_key: str,
 
     valor_inicial = _lista_participantes([], acao["max"], guild)
 
-    # Embed de registro (vira "Registro de Ação" ao finalizar)
+    # Embed de registo (vira "Registo de Ação" ao finalizar)
     embed_post = discord.Embed(
         title=f"⚔️ {acao['nome'].upper()}",
         color=COR_GROVE, timestamp=datetime.now(timezone.utc)
@@ -906,7 +694,7 @@ async def _criar_escalacao(interaction: discord.Interaction, armamento_key: str,
     embed_post.add_field(name="Nº de membros:",  value=acao["label"],  inline=True)
     embed_post.add_field(name="Status:",         value="Em andamento", inline=False)
     embed_post.add_field(name="Participantes:",  value=valor_inicial,  inline=False)
-    embed_post.set_footer(text=f"Bahama Mamas Bar • Criado por {interaction.user.display_name}")
+    embed_post.set_footer(text=f"Bahamas • Criado por {interaction.user.display_name}")
 
     msg_post = await canal_post.send(embed=embed_post)
 
@@ -921,7 +709,7 @@ async def _criar_escalacao(interaction: discord.Interaction, armamento_key: str,
     )
     embed_painel.set_author(name=NOME_SERVIDOR, icon_url=LOGO_URL)
     embed_painel.add_field(name="Participantes:", value=valor_inicial, inline=False)
-    embed_painel.set_footer(text="Bahama Mamas Bar")
+    embed_painel.set_footer(text="Bahamas")
 
     msg_painel = await canal_painel.send(content="@everyone", embed=embed_painel,
                                           allowed_mentions=discord.AllowedMentions(everyone=True))
@@ -994,7 +782,7 @@ class EscalacaoAcaoSelect(discord.ui.Select):
                 description="Digite o nome e o contingente manualmente", emoji="✏️"
             )
         )
-        super().__init__(placeholder="Selecione a ação a ser puxada...", options=options, custom_id="select_acao_groove")
+        super().__init__(placeholder="Seleciona a ação a ser puxada...", options=options, custom_id="select_acao_groove")
 
     async def callback(self, interaction: discord.Interaction):
         if self.values[0] == "custom":
@@ -1012,10 +800,10 @@ class EscalacaoAcaoView(discord.ui.View):
 class EscalacaoArmSelect(discord.ui.Select):
     def __init__(self):
         options = [discord.SelectOption(label=v, value=k) for k, v in ARMAMENTOS.items()]
-        super().__init__(placeholder="Selecione o armamento...", options=options, custom_id="select_arm_groove")
+        super().__init__(placeholder="Seleciona o armamento...", options=options, custom_id="select_arm_groove")
 
     async def callback(self, interaction: discord.Interaction):
-        embed = discord.Embed(title="⚔️ Criar Escalação", description="Agora selecione a **ação** a ser puxada:", color=COR_GROVE)
+        embed = discord.Embed(title="⚔️ Criar Escalação", description="Agora seleciona a **ação** a ser puxada:", color=COR_GROVE)
         await interaction.response.send_message(embed=embed, view=EscalacaoAcaoView(armamento_key=self.values[0]), ephemeral=True)
 
 
@@ -1028,7 +816,7 @@ class EscalacaoIniciarView(discord.ui.View):
 @bot.tree.command(name="escalacao", description="Cria uma escalação de ação.")
 @app_commands.checks.has_permissions(manage_messages=True)
 async def escalacao(interaction: discord.Interaction):
-    embed = discord.Embed(title="⚔️ Criar Escalação", description="Selecione o armamento:", color=COR_GROVE)
+    embed = discord.Embed(title="⚔️ Criar Escalação", description="Seleciona o armamento:", color=COR_GROVE)
     await interaction.response.send_message(embed=embed, view=EscalacaoIniciarView(), ephemeral=True)
 
 
@@ -1036,12 +824,12 @@ async def escalacao(interaction: discord.Interaction):
 @app_commands.checks.has_permissions(administrator=True)
 async def setup_escalacao(interaction: discord.Interaction):
     embed = discord.Embed(
-        title="⚔️ Escalações – Bahama Mamas Bar",
+        title="⚔️ Escalações – Bahamas",
         description="Quando uma escalação for criada, os botões de **Participar / Sair / Finalizar** aparecerão aqui.\n\nFique de olho! 🩷",
         color=COR_GROVE
     )
     embed.set_author(name=NOME_SERVIDOR, icon_url=LOGO_URL)
-    embed.set_footer(text="Bahama Mamas Bar")
+    embed.set_footer(text="Bahamas")
     await interaction.channel.send(embed=embed)
     await interaction.response.send_message("✅ Painel de escalação enviado!", ephemeral=True)
 
@@ -1051,10 +839,10 @@ async def setup_escalacao(interaction: discord.Interaction):
 # ══════════════════════════════════════════════════════════════
 # Painel fixo com um botão "Criar Nova Ação". Ao clicar, abre um formulário
 # pedindo o nome do fight e contra qual organização foi, e em seguida a
-# pessoa escolhe o resultado (Vitória/Derrota) em botões — tudo registrado
+# pessoa escolhe o resultado (Vitória/Derrota) em botões — tudo registado
 # manualmente pelo próprio membro, sem depender do sistema de escalação.
 
-CANAL_LOG_WINLOSE_ID = 0   # ⚠️ DEFINA — canal onde cada Win/Lose registrado será logado
+CANAL_LOG_WINLOSE_ID = 0   # ⚠️ DEFINA — canal onde cada Win/Lose registado será logado
 
 
 class WinLoseResultView(discord.ui.View):
@@ -1063,10 +851,10 @@ class WinLoseResultView(discord.ui.View):
         self.nome_fight = nome_fight
         self.org        = org
 
-    async def _registrar(self, interaction: discord.Interaction, resultado: str):
+    async def _registar(self, interaction: discord.Interaction, resultado: str):
         agora = datetime.now(timezone.utc)
         embed = discord.Embed(
-            title="⚔️ Ação Registrada",
+            title="⚔️ Ação Registada",
             color=COR_APROVADO if resultado == "vitoria" else COR_RECUSADO,
             timestamp=agora
         )
@@ -1074,7 +862,7 @@ class WinLoseResultView(discord.ui.View):
         embed.add_field(name="🗡️ Fight",        value=self.nome_fight, inline=True)
         embed.add_field(name="🏴 Org Adversária", value=self.org,        inline=True)
         embed.add_field(name="📊 Resultado",     value="🏆 VITÓRIA" if resultado == "vitoria" else "💀 DERROTA", inline=True)
-        embed.add_field(name="👤 Registrado por", value=interaction.user.mention, inline=False)
+        embed.add_field(name="👤 Registado por", value=interaction.user.mention, inline=False)
         embed.set_footer(text=f"ID: {interaction.user.id}")
 
         canal_log = bot.get_channel(CANAL_LOG_WINLOSE_ID)
@@ -1086,20 +874,20 @@ class WinLoseResultView(discord.ui.View):
 
         texto = "🏆 Vitória" if resultado == "vitoria" else "💀 Derrota"
         await interaction.response.edit_message(
-            content=f"✅ Ação **{self.nome_fight}** registrada como **{texto}**!",
+            content=f"✅ Ação **{self.nome_fight}** registada como **{texto}**!",
             view=self
         )
 
     @discord.ui.button(label="🏆 Vitória", style=discord.ButtonStyle.success, custom_id="btn_wl_vitoria")
     async def vitoria(self, interaction: discord.Interaction, button: discord.ui.Button):
-        await self._registrar(interaction, "vitoria")
+        await self._registar(interaction, "vitoria")
 
     @discord.ui.button(label="💀 Derrota", style=discord.ButtonStyle.danger, custom_id="btn_wl_derrota")
     async def derrota(self, interaction: discord.Interaction, button: discord.ui.Button):
-        await self._registrar(interaction, "derrota")
+        await self._registar(interaction, "derrota")
 
 
-class WinLoseModal(discord.ui.Modal, title="🗡️ Registrar Nova Ação"):
+class WinLoseModal(discord.ui.Modal, title="🗡️ Registar Nova Ação"):
     nome_fight = discord.ui.TextInput(label="Nome do Fight", placeholder="Ex: Invasão na Gruta", required=True, max_length=100)
     org        = discord.ui.TextInput(label="Contra qual Org?", placeholder="Ex: MS13", required=True, max_length=80)
 
@@ -1107,7 +895,7 @@ class WinLoseModal(discord.ui.Modal, title="🗡️ Registrar Nova Ação"):
         view = WinLoseResultView(nome_fight=self.nome_fight.value, org=self.org.value)
         await interaction.response.send_message(
             f"🗡️ **Fight:** {self.nome_fight.value}\n🏴 **Org:** {self.org.value}\n\n"
-            "Selecione o resultado da ação:",
+            "Seleciona o resultado da ação:",
             view=view, ephemeral=True
         )
 
@@ -1121,17 +909,17 @@ class WinLosePainelView(discord.ui.View):
         await interaction.response.send_modal(WinLoseModal())
 
 
-@bot.tree.command(name="setup_winlose", description="Envia o painel de registro manual de ações (Win/Lose).")
+@bot.tree.command(name="setup_winlose", description="Envia o painel de registo manual de ações (Win/Lose).")
 @app_commands.checks.has_permissions(administrator=True)
 async def setup_winlose(interaction: discord.Interaction):
     embed = discord.Embed(
         title="🗡️ Central de Planejamento",
-        description="Clique abaixo para planejar uma nova ação, informar contra qual organização foi e registrar o resultado.",
+        description="Clica abaixo para planejar uma nova ação, informar contra qual organização foi e registar o resultado.",
         color=COR_GROVE
     )
     embed.set_author(name=NOME_SERVIDOR, icon_url=LOGO_URL)
     embed.set_thumbnail(url=LOGO_URL)
-    embed.set_footer(text="Bahama Mamas Bar")
+    embed.set_footer(text="Bahamas")
     await interaction.channel.send(embed=embed, view=WinLosePainelView())
     await interaction.response.send_message("✅ Painel de Win/Lose enviado!", ephemeral=True)
 
@@ -1139,13 +927,13 @@ async def setup_winlose(interaction: discord.Interaction):
 # ══════════════════════════════════════════════════════════════
 #   CONTAGEM DE KILLS
 # ══════════════════════════════════════════════════════════════
-# Painel fixo com um botão "Registrar Kills". Ao clicar, abre um formulário
+# Painel fixo com um botão "Registar Kills". Ao clicar, abre um formulário
 # onde a pessoa escreve a quantidade (1 a 12) e, opcionalmente, o link do clip.
 
-CANAL_LOG_CONTAGEM_ID = 0   # ⚠️ DEFINA — canal onde cada registro de kills será logado
+CANAL_LOG_CONTAGEM_ID = 0   # ⚠️ DEFINA — canal onde cada registo de kills será logado
 
 
-class ContagemModal(discord.ui.Modal, title="☠️ Registrar Kills"):
+class ContagemModal(discord.ui.Modal, title="☠️ Registar Kills"):
     kills     = discord.ui.TextInput(label="Quantidade de Kills (1 a 12)", placeholder="Ex: 5", required=True, max_length=2)
     link_clip = discord.ui.TextInput(label="Link do Clip (opcional)", placeholder="https://...", required=False, max_length=300)
 
@@ -1159,7 +947,7 @@ class ContagemModal(discord.ui.Modal, title="☠️ Registrar Kills"):
             await interaction.response.send_message("❌ A quantidade deve estar entre 1 e 12.", ephemeral=True)
             return
 
-        embed = discord.Embed(title="☠️ Kills Registradas", color=COR_GROVE, timestamp=datetime.now(timezone.utc))
+        embed = discord.Embed(title="☠️ Kills Registadas", color=COR_GROVE, timestamp=datetime.now(timezone.utc))
         embed.set_author(name=NOME_SERVIDOR, icon_url=LOGO_URL)
         embed.add_field(name="👤 Membro", value=interaction.user.mention, inline=True)
         embed.add_field(name="☠️ Kills",  value=f"**{qtd}**",             inline=True)
@@ -1170,7 +958,7 @@ class ContagemModal(discord.ui.Modal, title="☠️ Registrar Kills"):
         canal_log = bot.get_channel(CANAL_LOG_CONTAGEM_ID)
         if canal_log:
             await canal_log.send(embed=embed)
-            await interaction.response.send_message(f"✅ **{qtd}** kill(s) registrada(s)!", ephemeral=True)
+            await interaction.response.send_message(f"✅ **{qtd}** kill(s) registada(s)!", ephemeral=True)
         else:
             await interaction.response.send_message("❌ Canal de log de contagem não configurado.", ephemeral=True)
 
@@ -1179,8 +967,8 @@ class ContagemPainelView(discord.ui.View):
     def __init__(self):
         super().__init__(timeout=None)
 
-    @discord.ui.button(label="☠️ Registrar Kills", style=discord.ButtonStyle.danger, custom_id="btn_registrar_kills")
-    async def registrar(self, interaction: discord.Interaction, button: discord.ui.Button):
+    @discord.ui.button(label="☠️ Registar Kills", style=discord.ButtonStyle.danger, custom_id="btn_registar_kills")
+    async def registar(self, interaction: discord.Interaction, button: discord.ui.Button):
         await interaction.response.send_modal(ContagemModal())
 
 
@@ -1189,12 +977,12 @@ class ContagemPainelView(discord.ui.View):
 async def setup_contagem(interaction: discord.Interaction):
     embed = discord.Embed(
         title="☠️ Contagem de Kills",
-        description="Clique abaixo para registrar suas kills e, se quiser, o link do clip.",
+        description="Clica abaixo para registar suas kills e, se quiser, o link do clip.",
         color=COR_GROVE
     )
     embed.set_author(name=NOME_SERVIDOR, icon_url=LOGO_URL)
     embed.set_thumbnail(url=LOGO_URL)
-    embed.set_footer(text="Bahama Mamas Bar")
+    embed.set_footer(text="Bahamas")
     await interaction.channel.send(embed=embed, view=ContagemPainelView())
     await interaction.response.send_message("✅ Painel de contagem enviado!", ephemeral=True)
 
@@ -1203,7 +991,7 @@ async def setup_contagem(interaction: discord.Interaction):
 #   AUSÊNCIA
 # ══════════════════════════════════════════════════════════════
 
-class AusenciaModal(discord.ui.Modal, title="Registrar Ausência"):
+class AusenciaModal(discord.ui.Modal, title="Registar Ausência"):
     motivo = discord.ui.TextInput(label="Motivo",            placeholder="Motivo da ausência", required=True, style=discord.TextStyle.paragraph)
     saida  = discord.ui.TextInput(label="Data de Saída",     placeholder="Ex: 13/05/2026",     required=True, max_length=20)
     volta  = discord.ui.TextInput(label="Previsão de Volta", placeholder="Ex: 20/05/2026",     required=True, max_length=20)
@@ -1217,7 +1005,7 @@ class AusenciaModal(discord.ui.Modal, title="Registrar Ausência"):
         embed = discord.Embed(title="😴 Solicitação de Ausência", color=COR_AUSENCIA, timestamp=agora)
         embed.set_author(name=NOME_SERVIDOR, icon_url=LOGO_URL)
         embed.set_thumbnail(url=interaction.user.display_avatar.url)
-        embed.add_field(name="Usuário", value=interaction.user.mention, inline=True)
+        embed.add_field(name="Utilizador", value=interaction.user.mention, inline=True)
         embed.add_field(name="Motivo",  value=self.motivo.value,        inline=False)
         embed.add_field(name="Saída",   value=self.saida.value,         inline=True)
         embed.add_field(name="Volta",   value=self.volta.value,         inline=True)
@@ -1230,7 +1018,7 @@ class AusenciaModal(discord.ui.Modal, title="Registrar Ausência"):
             canal_origem_id=interaction.channel_id
         )
         await canal.send(embed=embed, view=view)
-        await interaction.response.send_message("✅ Solicitação de ausência enviada! Aguarde.", ephemeral=True)
+        await interaction.response.send_message("✅ Solicitação de ausência enviada! Aguarda.", ephemeral=True)
 
 
 class RetirarAusenciaView(discord.ui.View):
@@ -1298,7 +1086,7 @@ class AprovarRecusarAusenciaView(discord.ui.View):
         guild  = interaction.guild
         membro = guild.get_member(self.user_id)
         if not membro:
-            await interaction.response.send_message("❌ Usuário não encontrado.", ephemeral=True)
+            await interaction.response.send_message("❌ Utilizador não encontrado.", ephemeral=True)
             return
 
         cargo_aus = guild.get_role(CARGO_AUSENCIA_ID)
@@ -1333,7 +1121,7 @@ class AprovarRecusarAusenciaView(discord.ui.View):
                 await thread.send(
                     f"{membro.mention}\n\n**😴 Ausência aprovada!**\n\n"
                     f"**Motivo:** {self.motivo}\n**Saída:** {self.saida}\n**Volta:** {self.volta}\n\n"
-                    "Quando retornar, clique no botão abaixo:",
+                    "Quando retornar, clica no botão abaixo:",
                     view=view_ret
                 )
             except Exception as e:
@@ -1369,8 +1157,8 @@ class AusenciaSetupView(discord.ui.View):
     def __init__(self):
         super().__init__(timeout=None)
 
-    @discord.ui.button(label="😴 Registrar Ausência", style=discord.ButtonStyle.primary, custom_id="btn_reg_aus_groove")
-    async def registrar(self, interaction: discord.Interaction, button: discord.ui.Button):
+    @discord.ui.button(label="😴 Registar Ausência", style=discord.ButtonStyle.primary, custom_id="btn_reg_aus_groove")
+    async def registar(self, interaction: discord.Interaction, button: discord.ui.Button):
         await interaction.response.send_modal(AusenciaModal())
 
 
@@ -1378,17 +1166,17 @@ class AusenciaSetupView(discord.ui.View):
 @app_commands.checks.has_permissions(administrator=True)
 async def setup_ausencia(interaction: discord.Interaction):
     embed = discord.Embed(
-        title="😴 Ausência – Bahama Mamas Bar",
+        title="😴 Ausência – Bahamas",
         description=(
             "Precisa se ausentar?\n\n"
-            "Clique no botão abaixo, preencha o formulário e aguarde a aprovação.\n"
-            "Ao ser aprovado você receberá o cargo de **Ausência** automaticamente."
+            "Clica no botão abaixo, preencha o formulário e aguarda a aprovação.\n"
+            "Ao seres aprovado(a), receberás automaticamente o cargo de **Ausência**."
         ),
         color=COR_AUSENCIA
     )
     embed.set_author(name=NOME_SERVIDOR, icon_url=LOGO_URL)
     embed.set_thumbnail(url=LOGO_URL)
-    embed.set_footer(text="Bahama Mamas Bar")
+    embed.set_footer(text="Bahamas")
     await interaction.channel.send(embed=embed, view=AusenciaSetupView())
     await interaction.response.send_message("✅ Painel de ausência enviado!", ephemeral=True)
 
@@ -1449,7 +1237,7 @@ def build_meta_embed(db: dict) -> discord.Embed:
         value="O cumprimento da meta é fundamental para que o estoque não zere e todos tenham material para trabalhar.",
         inline=False
     )
-    embed.set_footer(text="Bahama Mamas Bar • Meta Semanal")
+    embed.set_footer(text="Bahamas • Meta Semanal")
     return embed
 
 
@@ -1515,7 +1303,7 @@ def _parse_meta_itens(texto: str) -> dict:
 
 
 class TrocarMetaModal(discord.ui.Modal, title="🔄 Mudança de Farm"):
-    """Agora cada item tem seu próprio campo — o usuário digita SÓ a quantidade,
+    """Agora cada item tem seu próprio campo — o utilizador digita SÓ a quantidade,
     não precisa mais escrever o nome do item."""
     oleo         = discord.ui.TextInput(label="🛢️ Óleo (Barris)",           placeholder="Ex: 40", required=False, max_length=10)
     plastico     = discord.ui.TextInput(label="🧴 Plástico (Unidades)",      placeholder="Ex: 70", required=False, max_length=10)
@@ -1571,7 +1359,7 @@ class TrocarMetaModal(discord.ui.Modal, title="🔄 Mudança de Farm"):
             embed.set_author(name=NOME_SERVIDOR, icon_url=LOGO_URL)
             embed.set_footer(text=f"Alterado por {interaction.user.display_name} • Válido apenas nesta sala")
             await interaction.channel.send(embed=embed)
-            await interaction.followup.send("✅ Meta individual registrada nesta sala!", ephemeral=True)
+            await interaction.followup.send("✅ Meta individual registada nesta sala!", ephemeral=True)
         else:
             db = load_db()
             for chave, qtd in valores.items():
@@ -1622,89 +1410,84 @@ class TrocarMetaTipoView(discord.ui.View):
         await interaction.response.send_modal(TrocarMetaModal(modo="geral"))
 
 
-class FarmView(discord.ui.View):
+class CandidaturaModal(discord.ui.Modal, title="📋 Candidatura à Organização"):
+    nome            = discord.ui.TextInput(label="Nome", placeholder="O teu nome", required=True, max_length=80)
+    idade           = discord.ui.TextInput(label="Idade", placeholder="Ex: 21", required=True, max_length=3)
+    clips           = discord.ui.TextInput(label="Clips / HLs", placeholder="Link para os teus clips ou highlights", required=True, max_length=300)
+    disponibilidade = discord.ui.TextInput(
+        label="Disponibilidade", placeholder="Ex: Todos os dias, das 20h às 00h",
+        style=discord.TextStyle.paragraph, required=True, max_length=300
+    )
+
+    async def on_submit(self, interaction: discord.Interaction):
+        guild     = interaction.guild
+        membro    = interaction.user
+        categoria = guild.get_channel(CATEGORIA_FARM_ID)
+        if not categoria or not isinstance(categoria, discord.CategoryChannel):
+            await interaction.response.send_message("❌ Categoria não encontrada.", ephemeral=True)
+            return
+
+        canal_nome       = f"📋・{membro.display_name.lower().replace(' ', '-')}"
+        cargo_staff_objs = [guild.get_role(cid) for cid in CARGOS_STAFF_IDS if guild.get_role(cid)]
+        cargo_gerente    = guild.get_role(CARGO_GERENTE_ID)
+
+        overwrites = {
+            guild.default_role: discord.PermissionOverwrite(view_channel=False),
+            membro:             discord.PermissionOverwrite(view_channel=True, send_messages=True, read_message_history=True),
+            guild.me:           discord.PermissionOverwrite(view_channel=True, send_messages=True, manage_channels=True),
+        }
+        for cr in cargo_staff_objs:
+            overwrites[cr] = discord.PermissionOverwrite(view_channel=True, send_messages=True, read_message_history=True, manage_channels=True)
+        if cargo_gerente:
+            overwrites[cargo_gerente] = discord.PermissionOverwrite(view_channel=True, send_messages=True, read_message_history=True, manage_channels=True)
+
+        canal_ticket = await guild.create_text_channel(
+            name=canal_nome, category=categoria, overwrites=overwrites,
+            reason=f"Candidatura de {membro}"
+        )
+
+        embed = discord.Embed(title="📋 Candidatura à Organização", color=COR_GROVE, timestamp=datetime.now(timezone.utc))
+        embed.set_author(name=NOME_SERVIDOR, icon_url=LOGO_URL)
+        embed.set_thumbnail(url=membro.display_avatar.url)
+        embed.add_field(name="👤 Candidato",         value=membro.mention,               inline=True)
+        embed.add_field(name="📛 Nome",               value=self.nome.value,              inline=True)
+        embed.add_field(name="🎂 Idade",              value=self.idade.value,             inline=True)
+        embed.add_field(name="🎬 Clips / HLs",        value=self.clips.value,             inline=False)
+        embed.add_field(name="🕒 Disponibilidade",    value=self.disponibilidade.value,   inline=False)
+        embed.add_field(name="Estado",               value="A aguardar análise...",       inline=False)
+        embed.set_footer(text=f"ID: {membro.id}")
+
+        view = CandidaturaView(user_id=membro.id)
+        msg  = await canal_ticket.send(content=membro.mention, embed=embed, view=view)
+        await msg.pin()
+
+        if cargo_gerente:
+            await canal_ticket.send(
+                f"{cargo_gerente.mention} — nova candidatura de {membro.mention}!",
+                allowed_mentions=discord.AllowedMentions(roles=True)
+            )
+
+        await interaction.response.send_message(f"✅ Candidatura submetida: {canal_ticket.mention}", ephemeral=True)
+
+
+class CandidaturaView(discord.ui.View):
     def __init__(self, user_id: int = 0):
         super().__init__(timeout=None)
         self.user_id = user_id
 
-    @discord.ui.button(label="📣 Ping Membro", style=discord.ButtonStyle.secondary, custom_id="btn_farm_ping_groove")
-    async def ping_membro(self, interaction: discord.Interaction, button: discord.ui.Button):
-        # Pinga o dono do ticket (membro)
+    @discord.ui.button(label="📣 Notificar Candidato", style=discord.ButtonStyle.secondary, custom_id="btn_farm_ping_groove")
+    async def notificar(self, interaction: discord.Interaction, button: discord.ui.Button):
         membro = interaction.guild.get_member(self.user_id)
         if membro:
             await interaction.response.send_message(
-                f"{membro.mention} — o responsável está chegando! 🩷",
+                f"{membro.mention} — o responsável vai analisar a tua candidatura em breve! 💜",
                 allowed_mentions=discord.AllowedMentions(users=True)
             )
         else:
-            await interaction.response.send_message("❌ Membro não encontrado.", ephemeral=True)
-
-    @discord.ui.button(label="🔄 Trocar Meta", style=discord.ButtonStyle.primary, custom_id="btn_farm_trocar_meta_groove")
-    async def trocar_meta(self, interaction: discord.Interaction, button: discord.ui.Button):
-        if not tem_staff(interaction.user) and not tem_gerente(interaction.user):
-            await interaction.response.send_message("❌ Sem permissão.", ephemeral=True)
-            return
-        embed = discord.Embed(
-            title="🔄 Trocar Meta",
-            description=(
-                "**📍 Individual** — muda apenas nesta sala.\n"
-                "**📢 Geral** — atualiza a Meta Semanal e anuncia com @here em #info-meta."
-            ),
-            color=COR_GROVE
-        )
-        await interaction.response.send_message(embed=embed, view=TrocarMetaTipoView(), ephemeral=True)
+            await interaction.response.send_message("❌ Candidato não encontrado.", ephemeral=True)
 
 
-async def criar_sala_farm(interaction: discord.Interaction):
-    """Cria o canal de ticket. Chamada direto pelo clique do botão
-    (sem modal, pois o Discord não permite modais sem nenhum campo)."""
-    guild     = interaction.guild
-    membro    = interaction.user
-    categoria = guild.get_channel(CATEGORIA_FARM_ID)
-    if not categoria or not isinstance(categoria, discord.CategoryChannel):
-        await interaction.response.send_message("❌ Categoria não encontrada.", ephemeral=True)
-        return
-
-    canal_nome       = f"🍹・{membro.display_name.lower().replace(' ', '-')}"
-    cargo_staff_objs = [guild.get_role(cid) for cid in CARGOS_STAFF_IDS if guild.get_role(cid)]
-    cargo_gerente    = guild.get_role(CARGO_GERENTE_ID)
-
-    overwrites = {
-        guild.default_role: discord.PermissionOverwrite(view_channel=False),
-        membro:             discord.PermissionOverwrite(view_channel=True, send_messages=True, read_message_history=True),
-        guild.me:           discord.PermissionOverwrite(view_channel=True, send_messages=True, manage_channels=True),
-    }
-    for cr in cargo_staff_objs:
-        overwrites[cr] = discord.PermissionOverwrite(view_channel=True, send_messages=True, read_message_history=True, manage_channels=True)
-    if cargo_gerente:
-        overwrites[cargo_gerente] = discord.PermissionOverwrite(view_channel=True, send_messages=True, read_message_history=True, manage_channels=True)
-
-    canal_ticket = await guild.create_text_channel(
-        name=canal_nome, category=categoria, overwrites=overwrites,
-        reason=f"Ticket de {membro}"
-    )
-
-    embed = discord.Embed(title="🍹 Sala", color=COR_GROVE, timestamp=datetime.now(timezone.utc))
-    embed.set_author(name=NOME_SERVIDOR, icon_url=LOGO_URL)
-    embed.set_thumbnail(url=membro.display_avatar.url)
-    embed.add_field(name="Solicitante", value=membro.mention,  inline=True)
-    embed.add_field(name="Status",      value="Aguardando...", inline=True)
-    embed.set_footer(text=f"ID: {membro.id}")
-
-    view = FarmView(user_id=membro.id)
-    msg  = await canal_ticket.send(content=membro.mention, embed=embed, view=view)
-    await msg.pin()
-
-    if cargo_gerente:
-        await canal_ticket.send(
-            f"{cargo_gerente.mention} — novo ticket aberto por {membro.mention}!",
-            allowed_mentions=discord.AllowedMentions(roles=True)
-        )
-
-    await interaction.response.send_message(f"✅ Sala criada: {canal_ticket.mention}", ephemeral=True)
-
-
-class FecharFarmView(discord.ui.View):
+class FecharCandidaturaView(discord.ui.View):
     def __init__(self, user_id: int = 0):
         super().__init__(timeout=None)
         self.user_id = user_id
@@ -1714,12 +1497,12 @@ class FecharFarmView(discord.ui.View):
         if not tem_staff(interaction.user) and interaction.user.id != self.user_id:
             await interaction.response.send_message("❌ Sem permissão.", ephemeral=True)
             return
-        await interaction.response.send_message("🔒 Fechando em 5 segundos...")
+        await interaction.response.send_message("🔒 A fechar em 5 segundos...")
         await asyncio.sleep(5)
         canal = interaction.channel
         if isinstance(canal, discord.TextChannel):
             try:
-                await canal.delete(reason="Ticket fechado")
+                await canal.delete(reason="Candidatura fechada")
             except Exception:
                 pass
 
@@ -1728,31 +1511,46 @@ class PainelTicketsView(discord.ui.View):
     def __init__(self):
         super().__init__(timeout=None)
 
-    @discord.ui.button(label="🍹 Abrir Sala", style=discord.ButtonStyle.success, custom_id="btn_abrir_farm_groove")
-    async def abrir_farm(self, interaction: discord.Interaction, button: discord.ui.Button):
-        await criar_sala_farm(interaction)
+    @discord.ui.button(label="📋 Candidatar-me", style=discord.ButtonStyle.success, custom_id="btn_abrir_farm_groove")
+    async def abrir_candidatura(self, interaction: discord.Interaction, button: discord.ui.Button):
+        await interaction.response.send_modal(CandidaturaModal())
 
 
-@bot.tree.command(name="setup_tickets", description="Envia o painel de tickets no canal.")
+@bot.tree.command(name="setup_tickets", description="Envia o painel de candidaturas no canal.")
 @app_commands.checks.has_permissions(administrator=True)
 async def setup_tickets(interaction: discord.Interaction):
     embed = discord.Embed(
-        title="🍹 Sala – Bahama Mamas Bar",
+        title="📋 Candidatura – Bahamas",
         description=(
-            "Clique no botão abaixo para abrir sua sala!\n\n"
-            "Um responsável irá atendê-lo em breve. 🩷"
+            "Queres juntar-te à organização?\n\n"
+            "Clica no botão abaixo para preencheres a tua candidatura.\n"
+            "Um responsável irá analisar o teu pedido em breve. 💜"
         ),
         color=COR_GROVE
     )
     embed.set_author(name=NOME_SERVIDOR, icon_url=LOGO_URL)
     embed.set_thumbnail(url=LOGO_URL)
-    embed.set_footer(text="Bahama Mamas Bar")
+    embed.set_footer(text="Bahamas")
     await interaction.channel.send(embed=embed, view=PainelTicketsView())
     await interaction.response.send_message("✅ Painel enviado!", ephemeral=True)
 
 
+@bot.tree.command(name="trocar_meta", description="[Staff] Altera a meta de farm (individual ou geral).")
+@app_commands.checks.has_permissions(manage_messages=True)
+async def trocar_meta_cmd(interaction: discord.Interaction):
+    embed = discord.Embed(
+        title="🔄 Trocar Meta",
+        description=(
+            "**📍 Individual** — altera apenas neste canal.\n"
+            "**📢 Geral** — atualiza a Meta Semanal e anuncia com @here em #info-meta."
+        ),
+        color=COR_GROVE
+    )
+    await interaction.response.send_message(embed=embed, view=TrocarMetaTipoView(), ephemeral=True)
+
+
 # ══════════════════════════════════════════════════════════════
-#   STATUS  (Vendas / Ações por Membro / Ações da Facção)
+#   STATUS  (Ações por Membro / Ações da Facção)
 #   Cada categoria pode ser vista em modo "total" (desde o início do bot)
 #   ou "semanal" (reinicia toda segunda-feira 00:00 UTC).
 # ══════════════════════════════════════════════════════════════
@@ -1761,49 +1559,6 @@ def _barra_progresso(pct: float, tamanho: int = 10) -> str:
     pct = max(0, min(100, pct))
     cheio = round(pct / 100 * tamanho)
     return "🟩" * cheio + "⬜" * (tamanho - cheio)
-
-
-def build_vendas_embed(guild: discord.Guild, periodo: str = "total") -> discord.Embed:
-    db          = load_db()
-    chave       = "vendas" if periodo == "total" else "vendas_semanal"
-    vendas      = db.get(chave, {})
-    rotulo      = "Total (desde o início)" if periodo == "total" else "Semanal"
-    embed       = discord.Embed(title=f"🛒 Status de Vendas — {rotulo}", color=COR_GROVE, timestamp=datetime.now(timezone.utc))
-    embed.set_author(name=NOME_SERVIDOR, icon_url=LOGO_URL)
-
-    if not vendas:
-        embed.description = "Nenhuma venda registrada ainda neste período."
-        return embed
-
-    linhas_dados = []
-    for uid, v in vendas.items():
-        membro = guild.get_member(int(uid)) if guild else None
-        nome   = membro.display_name if membro else f"ID {uid}"
-        linhas_dados.append((nome, v.get("ziplock", 0), v.get("baseado", 0), v.get("faturado", 0)))
-    linhas_dados.sort(key=lambda x: x[3], reverse=True)
-
-    largura = max(6, max(len(n) for n, *_ in linhas_dados))
-    header  = f"{'Membro':<{largura}}  {'Ziplock':>7}  {'Baseado':>7}  {'Faturado (70%)':>15}"
-    linhas  = [header, "─" * len(header)]
-    tot_zip = tot_bas = tot_fat = 0
-    for nome, zip_, bas, fat in linhas_dados:
-        linhas.append(f"{nome:<{largura}}  {zip_:>7}  {bas:>7}  {('R$ ' + fmt_valor(round(fat))):>15}")
-        tot_zip += zip_; tot_bas += bas; tot_fat += fat
-    linhas.append("─" * len(header))
-    linhas.append(f"{'TOTAL':<{largura}}  {tot_zip:>7}  {tot_bas:>7}  {('R$ ' + fmt_valor(round(tot_fat))):>15}")
-
-    embed.description = "```\n" + "\n".join(linhas) + "\n```"
-    if periodo == "semanal":
-        db_semana = db.get("semana", {})
-        try:
-            reset_dt = datetime.fromisoformat(db_semana.get("proximo_reset"))
-            reset_txt = f" • Reinicia <t:{int(reset_dt.timestamp())}:R>"
-        except Exception:
-            reset_txt = " • Reinicia toda segunda-feira"
-        embed.set_footer(text=f"Bahama Mamas Bar • Faturado = parte da facção (70%){reset_txt}")
-    else:
-        embed.set_footer(text="Bahama Mamas Bar • Faturado = parte da facção (70%) por vendedor")
-    return embed
 
 
 def build_acoes_membro_embed(guild: discord.Guild, uid: str, periodo: str = "total") -> discord.Embed:
@@ -1820,7 +1575,7 @@ def build_acoes_membro_embed(guild: discord.Guild, uid: str, periodo: str = "tot
         embed.set_thumbnail(url=membro.display_avatar.url)
 
     if not stats:
-        embed.description = "Nenhuma ação registrada ainda para este membro neste período."
+        embed.description = "Nenhuma ação registada ainda para este membro neste período."
         return embed
 
     win     = stats.get("win", 0)
@@ -1832,7 +1587,7 @@ def build_acoes_membro_embed(guild: discord.Guild, uid: str, periodo: str = "tot
     embed.add_field(name="🏆 Vitórias",      value=f"**{win}** ({(win/total*100):.0f}%)" if total else "0", inline=True)
     embed.add_field(name="💀 Derrotas",      value=f"**{lose}** ({(lose/total*100):.0f}%)" if total else "0", inline=True)
     embed.add_field(name="📊 Winrate",       value=f"{_barra_progresso(winrate)}  **{winrate:.0f}%**", inline=False)
-    embed.set_footer(text="Bahama Mamas Bar • Estatísticas de Ações (N/A não é contabilizado)")
+    embed.set_footer(text="Bahamas • Estatísticas de Ações (N/A não é contabilizado)")
     return embed
 
 
@@ -1846,7 +1601,7 @@ def build_acoes_faccao_embed(periodo: str = "total") -> discord.Embed:
     embed.set_thumbnail(url=LOGO_URL)
 
     if not acoes:
-        embed.description = "Nenhuma ação registrada ainda neste período."
+        embed.description = "Nenhuma ação registada ainda neste período."
         return embed
 
     linhas_dados = []
@@ -1863,7 +1618,7 @@ def build_acoes_faccao_embed(periodo: str = "total") -> discord.Embed:
         linhas.append(f"{nome:<{largura}}  {total:>6}  {win:>5}  {lose:>5}  {winrate:>4.0f}%")
 
     embed.description = "```\n" + "\n".join(linhas) + "\n```"
-    embed.set_footer(text="Bahama Mamas Bar • Estatísticas por tipo de ação (N/A não é contabilizado)")
+    embed.set_footer(text="Bahamas • Estatísticas por tipo de ação (N/A não é contabilizado)")
     return embed
 
 
@@ -1881,11 +1636,11 @@ class StatusMembroSelect(discord.ui.Select):
             options.append(discord.SelectOption(label=nome[:100], value=uid))
         if not options:
             options = [discord.SelectOption(label="Nenhum dado disponível", value="none")]
-        super().__init__(placeholder="Selecione o membro...", options=options)
+        super().__init__(placeholder="Seleciona o membro...", options=options)
 
     async def callback(self, interaction: discord.Interaction):
         if self.values[0] == "none":
-            await interaction.response.send_message("❌ Nenhum dado de ações registrado ainda neste período.", ephemeral=True)
+            await interaction.response.send_message("❌ Nenhum dado de ações registado ainda neste período.", ephemeral=True)
             return
         embed = build_acoes_membro_embed(interaction.guild, self.values[0], self.periodo)
         await interaction.response.send_message(embed=embed, ephemeral=True)
@@ -1898,24 +1653,20 @@ class StatusAcoesMembroView(discord.ui.View):
 
 
 class StatusCategoriaView(discord.ui.View):
-    """Botões de categoria (Vendas / Ações Membro / Ações Facção) já filtrados
-    pelo período (Total ou Semanal) escolhido na tela anterior."""
+    """Botões de categoria (Ações por Membro / Ações da Facção) já filtrados
+    pelo período (Total ou Semanal) escolhido no ecrã anterior."""
     def __init__(self, periodo: str):
         super().__init__(timeout=180)
         self.periodo = periodo
 
-    @discord.ui.button(label="🛒 Vendas", style=discord.ButtonStyle.success)
-    async def vendas(self, interaction: discord.Interaction, button: discord.ui.Button):
-        embed = build_vendas_embed(interaction.guild, self.periodo)
-        await interaction.response.send_message(embed=embed, ephemeral=True)
-
     @discord.ui.button(label="⚔️ Ações (Membro)", style=discord.ButtonStyle.primary)
     async def acoes_membro(self, interaction: discord.Interaction, button: discord.ui.Button):
         await interaction.response.send_message(
-            "Selecione o membro para ver o status:",
+            "Seleciona o membro para veres o estado:",
             view=StatusAcoesMembroView(interaction.guild, self.periodo),
             ephemeral=True
         )
+
 
     @discord.ui.button(label="🏴 Ações (Facção)", style=discord.ButtonStyle.secondary)
     async def acoes_faccao(self, interaction: discord.Interaction, button: discord.ui.Button):
@@ -1924,18 +1675,17 @@ class StatusCategoriaView(discord.ui.View):
 
 
 class StatusPeriodoView(discord.ui.View):
-    """Primeira tela do /status: escolher entre Total e Semanal."""
+    """Primeiro ecrã do /status: escolher entre Total e Semanal."""
     def __init__(self):
         super().__init__(timeout=None)
 
     @discord.ui.button(label="📌 Total (desde o início)", style=discord.ButtonStyle.primary, custom_id="btn_status_total_groove")
     async def total(self, interaction: discord.Interaction, button: discord.ui.Button):
         embed = discord.Embed(
-            title="📊 Central de Status — Total",
+            title="📊 Central de Estado — Total",
             description=(
-                "Dados **desde o início do bot**. Escolha abaixo:\n\n"
-                "**🛒 Vendas** — ranking de vendas por membro\n"
-                "**⚔️ Ações (Membro)** — desempenho individual em ações\n"
+                "Dados **desde o início do bot**. Escolhe abaixo:\n\n"
+                "**⚔️ Ações (Membro)** — desempenho individual nas ações\n"
                 "**🏴 Ações (Facção)** — desempenho geral por tipo de ação"
             ),
             color=COR_GROVE
@@ -1946,11 +1696,10 @@ class StatusPeriodoView(discord.ui.View):
     @discord.ui.button(label="📅 Semanal", style=discord.ButtonStyle.secondary, custom_id="btn_status_semanal_groove")
     async def semanal(self, interaction: discord.Interaction, button: discord.ui.Button):
         embed = discord.Embed(
-            title="📊 Central de Status — Semanal",
+            title="📊 Central de Estado — Semanal",
             description=(
-                "Dados da **semana atual** (reinicia toda segunda-feira). Escolha abaixo:\n\n"
-                "**🛒 Vendas** — ranking de vendas por membro\n"
-                "**⚔️ Ações (Membro)** — desempenho individual em ações\n"
+                "Dados da **semana atual** (reinicia toda segunda-feira). Escolhe abaixo:\n\n"
+                "**⚔️ Ações (Membro)** — desempenho individual nas ações\n"
                 "**🏴 Ações (Facção)** — desempenho geral por tipo de ação"
             ),
             color=COR_GROVE
@@ -1959,10 +1708,10 @@ class StatusPeriodoView(discord.ui.View):
         await interaction.response.send_message(embed=embed, view=StatusCategoriaView("semanal"), ephemeral=True)
 
 
-@bot.tree.command(name="status", description="Abre o painel de status (vendas e ações).")
+@bot.tree.command(name="status", description="Abre o painel de estado (ações).")
 async def status(interaction: discord.Interaction):
     embed = discord.Embed(
-        title="📊 Central de Status – Bahama Mamas Bar",
+        title="📊 Central de Status – Bahamas",
         description=(
             "Escolha o período que deseja visualizar:\n\n"
             "**📌 Total** — estatísticas acumuladas desde o início do bot\n"
@@ -1972,12 +1721,12 @@ async def status(interaction: discord.Interaction):
     )
     embed.set_author(name=NOME_SERVIDOR, icon_url=LOGO_URL)
     embed.set_thumbnail(url=LOGO_URL)
-    embed.set_footer(text="Bahama Mamas Bar")
+    embed.set_footer(text="Bahamas")
     await interaction.response.send_message(embed=embed, view=StatusPeriodoView(), ephemeral=True)
 
 
 async def verificar_reset_semanal():
-    """Zera os placares semanais de vendas e ações toda segunda-feira 00:00 UTC,
+    """Zera os placares semanais de ações toda segunda-feira às 00:00 UTC,
     mantendo os totais (desde o início do bot) intactos."""
     await bot.wait_until_ready()
     while not bot.is_closed():
@@ -1986,7 +1735,6 @@ async def verificar_reset_semanal():
             agora  = datetime.now(timezone.utc)
             proximo_reset = datetime.fromisoformat(db["semana"]["proximo_reset"])
             if agora >= proximo_reset:
-                db["vendas_semanal"] = {}
                 db["acoes_stats"]["membros_semanal"] = {}
                 db["acoes_stats"]["acoes_semanal"]    = {}
                 db["semana"]["inicio"]        = agora.isoformat()
@@ -1997,22 +1745,21 @@ async def verificar_reset_semanal():
                 if canal_log:
                     embed = discord.Embed(
                         title="🔄 Ranking Semanal Reiniciado",
-                        description="Os placares semanais de **Vendas** e **Ações** foram zerados para a nova semana. Os totais desde o início do bot continuam intactos.",
+                        description="Os placares semanais de **Ações** foram zerados para a nova semana. Os totais desde o início do bot mantêm-se intactos.",
                         color=COR_GROVE, timestamp=agora
                     )
                     embed.set_author(name=NOME_SERVIDOR, icon_url=LOGO_URL)
                     await canal_log.send(embed=embed)
         except Exception as e:
             print(f"[STATUS] Erro no reset semanal: {e}")
-        await asyncio.sleep(1800)  # checa a cada 30 minutos
+        await asyncio.sleep(1800)  # verifica a cada 30 minutos
 
 
-@bot.tree.command(name="resetar_ranking_semanal", description="[Staff] Zera manualmente o ranking semanal de vendas e ações.")
+@bot.tree.command(name="resetar_ranking_semanal", description="[Staff] Zera manualmente o ranking semanal de ações.")
 @app_commands.checks.has_permissions(manage_messages=True)
 async def resetar_ranking_semanal(interaction: discord.Interaction):
     db    = load_db()
     agora = datetime.now(timezone.utc)
-    db["vendas_semanal"] = {}
     db["acoes_stats"]["membros_semanal"] = {}
     db["acoes_stats"]["acoes_semanal"]    = {}
     db["semana"]["inicio"]        = agora.isoformat()
@@ -2043,10 +1790,10 @@ class ConfigComandosModal(discord.ui.Modal, title="⚙️ Configurar /comandos")
 async def comandos(interaction: discord.Interaction):
     db    = load_db()
     texto = db.get("config", {}).get("comandos_texto", TEXTO_COMANDOS_PADRAO)
-    embed = discord.Embed(title="📋 Comandos – Bahama Mamas Bar", description=texto, color=COR_GROVE)
+    embed = discord.Embed(title="📋 Comandos – Bahamas", description=texto, color=COR_GROVE)
     embed.set_author(name=NOME_SERVIDOR, icon_url=LOGO_URL)
     embed.set_thumbnail(url=LOGO_URL)
-    embed.set_footer(text="Bahama Mamas Bar")
+    embed.set_footer(text="Bahamas")
     await interaction.response.send_message(embed=embed, ephemeral=True)
 
 
@@ -2083,7 +1830,7 @@ class AdvNivelSelect(discord.ui.Select):
             discord.SelectOption(label="Nível 4 – ADV ³",      value="warn3",     emoji="⚠️", description="Expira: 20 dias"),
             discord.SelectOption(label="Exonerado",             value="exonerado", emoji="🚫", description="Nunca expira"),
         ]
-        super().__init__(placeholder="Selecione o nível...", options=options, custom_id="select_adv_groove")
+        super().__init__(placeholder="Seleciona o nível...", options=options, custom_id="select_adv_groove")
 
     async def callback(self, interaction: discord.Interaction):
         await interaction.response.send_modal(AdvertenciaModal(membro_alvo=self.membro_alvo, nivel=self.values[0]))
@@ -2154,14 +1901,14 @@ class AdvertenciaModal(discord.ui.Modal, title="Aplicar Advertência"):
                 embed_anuncio.add_field(name="Nível",        value=cfg["label"],             inline=True)
                 embed_anuncio.add_field(name="Expiração",    value=cfg["expiracao_label"],   inline=True)
                 embed_anuncio.add_field(name="Motivo",       value=self.motivo.value,        inline=False)
-                embed_anuncio.set_footer(text="Bahama Mamas Bar")
+                embed_anuncio.set_footer(text="Bahamas")
                 await canal_anuncio_adv.send(embed=embed_anuncio)
             except Exception as e:
                 print(f"[ADV] Erro ao anunciar: {e}")
 
         try:
             dm = discord.Embed(
-                title=f"⚠️ Você recebeu uma advertência — {cfg['label']}",
+                title=f"⚠️ Recebeste uma advertência — {cfg['label']}",
                 description=f"**Servidor:** {interaction.guild.name}\n**Motivo:** {self.motivo.value}\n**Expiração:** {cfg['expiracao_label']}",
                 color=COR_ADV, timestamp=agora
             )
@@ -2220,7 +1967,7 @@ async def verificar_adv_expiradas():
 async def advertir(interaction: discord.Interaction, membro: discord.Member):
     view = discord.ui.View(timeout=60)
     view.add_item(AdvNivelSelect(membro_alvo=membro))
-    await interaction.response.send_message(f"Selecione o nível para {membro.mention}:", view=view, ephemeral=True)
+    await interaction.response.send_message(f"Seleciona o nível para {membro.mention}:", view=view, ephemeral=True)
 
 
 @bot.tree.command(name="ver_advertencias", description="Veja as advertências ativas de um membro.")
@@ -2253,7 +2000,7 @@ async def ver_advertencias(interaction: discord.Interaction, membro: discord.Mem
 
 
 # ══════════════════════════════════════════════════════════════
-#   CONTROLE DE BAÚ  (registros agrupados/colunares — layout vertical)
+#   CONTROLE DE BAÚ  (registos agrupados/colunares — layout vertical)
 # ══════════════════════════════════════════════════════════════
 # Como modais do Discord não aceitam upload de imagem, o fluxo é:
 # 1) Modal pede os itens em formato agrupado, um por linha:
@@ -2266,7 +2013,7 @@ async def ver_advertencias(interaction: discord.Interaction, membro: discord.Mem
 # 3) O bot captura essa mensagem, pega o anexo e posta o log com a imagem
 #    no canal de LOGS BAU, e tenta fechar/apagar a interface original
 #    automaticamente. Se o envio do log falhar (ex: erro ao anexar a
-#    imagem), o registro NÃO é descartado: o bot avisa a pessoa e volta a
+#    imagem), o registo NÃO é descartado: o bot avisa a pessoa e volta a
 #    aguardar uma nova foto, de forma segura.
 
 aguardando_foto_bau: dict[int, dict] = {}  # user_id -> {"tipo":..., "itens": [...], "motivo":..., "interaction": ...}
@@ -2346,8 +2093,8 @@ class BauEntradaModal(discord.ui.Modal, title="📦 Entrada no Baú"):
             "tipo": "entrada", "itens": itens_parseados, "motivo": None, "interaction": interaction
         }
         await interaction.response.send_message(
-            f"📦 Entrada registrada:\n{resumo}\n\n"
-            "📸 Agora **envie a foto** aqui no canal (pode colar com Ctrl+V) para concluir o registro.",
+            f"📦 Entrada registada:\n{resumo}\n\n"
+            "📸 Agora **envie a foto** aqui no canal (pode colar com Ctrl+V) para concluir o registo.",
             ephemeral=True
         )
 
@@ -2372,8 +2119,8 @@ class BauSaidaModal(discord.ui.Modal, title="📦 Saída do Baú"):
             "tipo": "saida", "itens": itens_parseados, "motivo": self.motivo.value, "interaction": interaction
         }
         await interaction.response.send_message(
-            f"📦 Saída registrada:\n{resumo}\n\n"
-            "📸 Agora **envie a foto** aqui no canal (pode colar com Ctrl+V) para concluir o registro.",
+            f"📦 Saída registada:\n{resumo}\n\n"
+            "📸 Agora **envie a foto** aqui no canal (pode colar com Ctrl+V) para concluir o registo.",
             ephemeral=True
         )
 
@@ -2419,7 +2166,7 @@ async def on_message(message: discord.Message):
     embed.set_footer(text=f"ID: {message.author.id}")
 
     # Envio seguro: se falhar ao salvar a foto no log (ex: erro de rede,
-    # anexo expirado, permissão), NÃO descarta o registro — pede a foto de
+    # anexo expirado, permissão), NÃO descarta o registo — pede a foto de
     # novo em vez de perder a movimentação.
     log_enviado = False
     if canal_log:
@@ -2437,7 +2184,7 @@ async def on_message(message: discord.Message):
         try:
             await message.channel.send(
                 f"{message.author.mention} ⚠️ Não consegui salvar a foto no log. "
-                "Por favor, **envie a foto novamente** para concluir o registro.",
+                "Por favor, **envie a foto novamente** para concluir o registo.",
                 delete_after=20
             )
         except Exception:
@@ -2456,8 +2203,8 @@ async def on_message(message: discord.Message):
         pass
 
     # Tenta encerrar/remover automaticamente a interface (mensagem ephemeral)
-    # aberta pelo modal, para que o usuário não precise clicar em "Ignorar mensagem".
-    # Se não for possível (token expirado, permissão etc.), o registro já foi
+    # aberta pelo modal, para que o utilizador não precise clicar em "Ignorar mensagem".
+    # Se não for possível (token expirado, permissão etc.), o registo já foi
     # gravado normalmente no canal de Logs BAU acima.
     if interacao_original is not None:
         try:
@@ -2483,20 +2230,20 @@ class ControleBauView(discord.ui.View):
 @app_commands.checks.has_permissions(administrator=True)
 async def setup_bau(interaction: discord.Interaction):
     embed = discord.Embed(
-        title="📦 Controle de Baú – Bahama Mamas Bar",
+        title="📦 Controle de Baú – Bahamas",
         description=(
-            "Use os botões abaixo para registrar movimentações do baú.\n\n"
-            "Você pode registrar **vários itens de uma vez**, um por linha, no formato:\n"
+            "Use os botões abaixo para registar movimentações do baú.\n\n"
+            "Podes registar **vários itens de uma vez**, um por linha, no formato:\n"
             "`Item: Quantidade`\n\n"
             "Exemplo:\n```\nGlock: 2\nMunição: 60\n```\n"
             "Depois de preencher, envie a **foto do comprovante** no canal "
-            "(pode colar com Ctrl+V) para concluir o registro."
+            "(pode colar com Ctrl+V) para concluir o registo."
         ),
         color=COR_GROVE
     )
     embed.set_author(name=NOME_SERVIDOR, icon_url=LOGO_URL)
     embed.set_thumbnail(url=LOGO_URL)
-    embed.set_footer(text="Bahama Mamas Bar")
+    embed.set_footer(text="Bahamas")
     await interaction.channel.send(embed=embed, view=ControleBauView())
     await interaction.response.send_message("✅ Painel de controle de baú enviado!", ephemeral=True)
 
@@ -2507,13 +2254,13 @@ async def setup_bau(interaction: discord.Interaction):
 
 @bot.event
 async def on_ready():
-    print(f"✅ Bahama Mamas Bar Bot online como {bot.user}")
+    print(f"✅ Bahamas Bot online como {bot.user}")
     bot.add_view(SETView())
     bot.add_view(AprovarRecusarSETView())
     bot.add_view(CalculadoraView())
     bot.add_view(PainelTicketsView())
-    bot.add_view(FarmView(user_id=0))
-    bot.add_view(FecharFarmView(user_id=0))
+    bot.add_view(CandidaturaView(user_id=0))
+    bot.add_view(FecharCandidaturaView(user_id=0))
     bot.add_view(EscalacaoPainelView(msg_id=0))
     bot.add_view(AusenciaSetupView())
     bot.add_view(AprovarRecusarAusenciaView(user_id=0))
@@ -2543,10 +2290,13 @@ async def on_ready():
     bot.loop.create_task(verificar_adv_expiradas())
     bot.loop.create_task(verificar_reset_semanal())
     try:
-        synced = await bot.tree.sync()
-        print(f"✅ {len(synced)} comando(s) sincronizado(s) globalmente (pode levar até 1h para aparecer em todo lugar).")
-        # Sincroniza também direto em cada servidor onde o bot está — isso
-        # aparece INSTANTANEAMENTE no Discord, sem esperar a propagação global.
+        # Limpa qualquer comando GLOBAL registado anteriormente (isso é o que
+        # estava causando comandos duplicados na lista "/"). Sincronizamos os
+        # comandos SÓ por servidor (guild), que é instantâneo e evita duplicidade.
+        bot.tree.clear_commands(guild=None)
+        await bot.tree.sync()
+        print("✅ Comandos globais antigos removidos (evita duplicação).")
+
         for guild in bot.guilds:
             try:
                 bot.tree.copy_global_to(guild=guild)
